@@ -99,3 +99,21 @@ public class Account {
 
 # Git Workflow
 [Рабочий процесс git workflow](https://www.atlassian.com/ru/git/tutorials/comparing-workflows/gitflow-workflow)
+
+* Названия feature веток : <номер issue с описанием>
+
+    Пример:
+    ```csharp
+    #123_human_model
+    ```
+    
+* Номер релиза — номер спринта
+* Названия hotfix веток : <краткое описание, что фиксили>
+
+    Пример:
+    ```csharp
+    fix_bug_with_lighting
+    ```
+    
+* Не удалять ветки после слияния
+
