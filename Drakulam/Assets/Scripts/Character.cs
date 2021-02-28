@@ -39,7 +39,7 @@ public class Character : MonoBehaviour
     /// We perform actions in the FixedUpdate method, since in the Animator component of the character
     /// set to Animate Physics = true and animation is synchronized with physics calculations
     /// </summary>
-    protected virtual void FixedUpdate()
+    protected virtual void Update()
     {
         // use Input.GetAxis for the X axis. The method returns the axis value in the range from -1 to 1.
         // with standard project settings
