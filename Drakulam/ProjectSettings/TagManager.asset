@@ -38,6 +38,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: StaticLights
+    uniqueID: 4279107957
+    locked: 0
   - name: Hell
     uniqueID: 2492536607
     locked: 0
