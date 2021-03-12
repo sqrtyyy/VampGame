@@ -38,27 +38,27 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: StaticLights
-    uniqueID: 4279107957
-    locked: 0
   - name: Hell
-    uniqueID: 2492536607
+    uniqueID: 979936181
     locked: 0
   - name: Ground
-    uniqueID: 2726807567
+    uniqueID: 2886852191
+    locked: 0
+  - name: Walls
+    uniqueID: 194947431
     locked: 0
   - name: Character
-    uniqueID: 3940660833
+    uniqueID: 2942736129
     locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
   - name: Tasks
-    uniqueID: 3744260343
+    uniqueID: 3341168605
     locked: 0
   - name: Ceiling
-    uniqueID: 3008219591
+    uniqueID: 1708623487
     locked: 0
   - name: Heaven
-    uniqueID: 3684068919
+    uniqueID: 1153455421
     locked: 0
