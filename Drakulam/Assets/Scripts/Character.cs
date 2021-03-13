@@ -11,6 +11,8 @@ public class Character : MonoBehaviour
 
     private float delayToIdle = 0.0f;
 
+    private float timeSinceAttack = 0.0f;
+
     //link to animation component
     protected Animator anim;
 
@@ -47,28 +49,45 @@ public class Character : MonoBehaviour
     {
         float moveX = direction.x;
         float moveY = direction.y;
-        body2D.velocity = new Vector2(moveX * maxSpeed, moveY * maxSpeed);
+
         if (moveX > 0 && !isFacingRight)
+        {
             Flip();
+        }
         else if (moveX < 0 && isFacingRight)
+        {
             Flip();
-        
-        if (Mathf.Abs(moveX) > Mathf.Epsilon || Mathf.Abs(moveY) > Mathf.Epsilon) {
-            // Reset timer
-            delayToIdle = 0.05f;
-            anim.SetInteger("animState", 1);
-        } else {
-            // Prevents flickering transitions to idle
-            delayToIdle -= Time.deltaTime;
-            if (delayToIdle < 0)
-                anim.SetInteger("animState", 0);
+        }
+        else
+        {
+            body2D.velocity = new Vector2(moveX * maxSpeed, moveY * maxSpeed);
+
+            if (Mathf.Abs(moveX) > Mathf.Epsilon || Mathf.Abs(moveY) > Mathf.Epsilon)
+            {
+                // Reset timer
+                delayToIdle = 0.05f;
+                anim.SetInteger("animState", 1);
+            }
+            else
+            {
+                // Prevents flickering transitions to idle
+                delayToIdle -= Time.deltaTime;
+                if (delayToIdle < 0)
+                    anim.SetInteger("animState", 0);
+            }
         }
 
     }
 
     private void Attack()
     {
-        anim.SetTrigger("attack");
+        if (timeSinceAttack > 0.45)
+        {
+            anim.SetTrigger("attack");
+
+            // Reset timer
+            timeSinceAttack = 0.0f;
+        }
     }
     /// <summary>
     /// Initial initialization
@@ -86,6 +105,7 @@ public class Character : MonoBehaviour
     /// </summary>
     protected virtual void Update()
     {
+        timeSinceAttack += Time.deltaTime;
         Move( controller.Player.Move.ReadValue<Vector2>());
     }
 
