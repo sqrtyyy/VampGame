@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4508945831261510680}
   - component: {fileID: 4508945831261510681}
   - component: {fileID: 4508945831261510682}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Vampire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,8 +60,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1480527, y: 0.07348111}
-  m_EdgeRadius: 0
+  m_Size: {x: 0.13, y: 0.02}
+  m_EdgeRadius: 0.2
 --- !u!50 &4508945831261510695
 Rigidbody2D:
   serializedVersion: 4
