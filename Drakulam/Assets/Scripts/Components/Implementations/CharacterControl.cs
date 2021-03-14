@@ -44,24 +44,36 @@ public class CharacterControl : IControllable
     {
         float moveX = direction.x;
         float moveY = direction.y;
-        body2D.velocity = new Vector2(moveX * maxSpeed, moveY * maxSpeed);
+
         if (moveX > 0 && !isFacingRight)
+        {
             Flip();
+        }
         else if (moveX < 0 && isFacingRight)
+        {
             Flip();
-        
-        if (Mathf.Abs(moveX) > Mathf.Epsilon || Mathf.Abs(moveY) > Mathf.Epsilon) {
-            // Reset timer
-            delayToIdle = 0.05f;
-            anim.SetInteger("animState", 1);
-        } else {
-            // Prevents flickering transitions to idle
-            delayToIdle -= Time.deltaTime;
-            if (delayToIdle < 0)
-             anim.SetInteger("animState", 0);
+        }
+        else
+        {
+            body2D.velocity = new Vector2(moveX * maxSpeed, moveY * maxSpeed);
+
+            if (Mathf.Abs(moveX) > Mathf.Epsilon || Mathf.Abs(moveY) > Mathf.Epsilon)
+            {
+                // Reset timer
+                delayToIdle = 0.05f;
+                anim.SetInteger("animState", 1);
+            }
+            else
+            {
+                // Prevents flickering transitions to idle
+                delayToIdle -= Time.deltaTime;
+                if (delayToIdle < 0)
+                    anim.SetInteger("animState", 0);
+            }
         }
 
     }
+
     
     private void OnEnable()
     {
