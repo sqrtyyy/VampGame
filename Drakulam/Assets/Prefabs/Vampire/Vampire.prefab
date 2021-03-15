@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4508945831261510680}
   - component: {fileID: 4508945831261510681}
   - component: {fileID: 4508945831261510682}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Vampire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4508945831261510683}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.469, y: -2.018, z: -3.2891922}
-  m_LocalScale: {x: 13.701729, y: 8.978826, z: 1}
+  m_LocalPosition: {x: -4.453, y: -5.201, z: -3.2891922}
+  m_LocalScale: {x: 3.2344036, y: 3.1400027, z: 1}
   m_Children:
   - {fileID: 4657653971119603389}
   m_Father: {fileID: 0}
@@ -49,19 +49,19 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.010468163, y: -0.24944733}
+  m_Offset: {x: 0.008244701, y: -0.35359508}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.55}
-    newSize: {x: 0.32, y: 0.55}
+    oldSize: {x: 0.57000005, y: 1.0902747}
+    newSize: {x: 0.57000005, y: 1.0902747}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1480527, y: 0.07348111}
-  m_EdgeRadius: 0
+  m_Size: {x: 0.3674482, y: 0.005906105}
+  m_EdgeRadius: 0.2
 --- !u!50 &4508945831261510695
 Rigidbody2D:
   serializedVersion: 4
@@ -122,13 +122,13 @@ SpriteRenderer:
   m_SortingLayerID: -1352231167
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4723107735738678597, guid: 530c320a1fad3ec4b9ff57f0befbcd95,
+  m_Sprite: {fileID: -3197505709843134346, guid: 5bdaee6b277eafa43bb42fdd478577cc,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.32, y: 0.55}
+  m_Size: {x: 0.57000005, y: 1.0902747}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -180,12 +180,12 @@ PrefabInstance:
     - target: {fileID: 3219679222478786656, guid: b9a9693fe5a02c740963911f120107c6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.05
+      value: -0.027
       objectReference: {fileID: 0}
     - target: {fileID: 3219679222478786656, guid: b9a9693fe5a02c740963911f120107c6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.07
+      value: -0.28
       objectReference: {fileID: 0}
     - target: {fileID: 3219679222478786656, guid: b9a9693fe5a02c740963911f120107c6,
         type: 3}
