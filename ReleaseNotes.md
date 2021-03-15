@@ -2,6 +2,14 @@
 
 # Version 2.0
 
+## What's new
+ * multiplayer
+ * interaction between human and vampire
+ * interaction between human and tasks
+ * light on the map
+ * normal maps for some tiles
+ 
+
 ## What's improved
   * updated better sprites of human and vampire
   * updated human and vampire animations
