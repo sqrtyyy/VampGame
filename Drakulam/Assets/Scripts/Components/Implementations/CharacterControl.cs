@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class CharacterControl : IControllable
 {
@@ -15,26 +16,35 @@ public class CharacterControl : IControllable
     private float delayToIdle = 0.0f;
     
     protected Animator anim; 
+
+    private PhotonView photonView;
     
     
     private void Awake()
     {
         controller = new CharacterInput();
-        controller.Player.Die.performed += ctx => { anim.SetTrigger("death"); };
+        controller.Player.Die.performed += ctx => { 
+            if (photonView.IsMine)
+                anim.SetTrigger("death"); 
+            };
         controller.Player.Atack.performed += ctx =>
         {
-            if (GetComponent<IDamageDealer>() != null)
+            if (photonView.IsMine)
             {
-                GetComponent<IDamageDealer>().Attack();
-            }
-            else
-            {
-                Debug.Log("Object doesn't have component \"IDamageDealer\"");
+                if (GetComponent<IDamageDealer>() != null)
+                {
+                    GetComponent<IDamageDealer>().Attack();
+                }
+                else
+                {
+                    Debug.Log("Object doesn't have component \"IDamageDealer\"");
+                }
             }
         };
         controller.Player.Hurt.performed += ctx =>
         {
-            GetComponent<ITaskCompleter>().FindTask();
+            if (photonView.IsMine)
+                GetComponent<ITaskCompleter>().FindTask();
         };
     }
     
@@ -86,7 +96,10 @@ public class CharacterControl : IControllable
     
     protected void Update()
     {
+        if (!photonView.IsMine)
+            return;
         Move( controller.Player.Move.ReadValue<Vector2>());
+        MoveCamera();
     }
     
     private void Flip()
@@ -100,9 +113,18 @@ public class CharacterControl : IControllable
         // set the new character size equal to the old one, but mirrored
         transform.localScale = theScale;
     }
+
+    private void MoveCamera()
+    {
+        Vector3 newPos = Camera.main.transform.position;
+        newPos.x = body2D.position.x;
+        newPos.y = body2D.position.y;
+        Camera.main.transform.position = newPos;
+    }
     
     protected void Start()
     {
+        photonView = GetComponent<PhotonView>();
         anim = GetComponent<Animator>();
         body2D = GetComponent<Rigidbody2D>();
         
