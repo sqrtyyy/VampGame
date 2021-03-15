@@ -45,6 +45,9 @@ GameObject:
   - component: {fileID: 4566793840482008393}
   - component: {fileID: 4566793840482008394}
   - component: {fileID: 531184552536714238}
+  - component: {fileID: 3105401985368833523}
+  - component: {fileID: 3147023708365186666}
+  - component: {fileID: 1089567215812443665}
   - component: {fileID: 7243357707775072921}
   m_Layer: 9
   m_Name: Human
@@ -219,6 +222,48 @@ MonoBehaviour:
   attackRadius: 1
   damage: 10
   anim: {fileID: 0}
+--- !u!114 &3105401985368833523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4566793840482008395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e3942c1f0ffe954fb4323d1cf9e5f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  center: {fileID: 1378842222441102402}
+  taskMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  radius: 0
+--- !u!114 &3147023708365186666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4566793840482008395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 285dad42e414caf43a472b52deaec260, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1089567215812443665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4566793840482008395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7d3fc39d75454d448f0861ab1e061c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 120
 --- !u!114 &7243357707775072921
 MonoBehaviour:
   m_ObjectHideFlags: 0
