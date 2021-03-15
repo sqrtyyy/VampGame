@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviourPunCallbacks
 {
 
     public GameObject PlayerPrefab;
-    public Transform Camera;
 
     // Start is called before the first frame update
     void Start()
