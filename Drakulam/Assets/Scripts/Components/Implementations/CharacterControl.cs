@@ -34,8 +34,7 @@ public class CharacterControl : IControllable
         };
         controller.Player.Hurt.performed += ctx =>
         {
-            GetComponent<IHealth>().changeHealth(-10);
-            anim.SetTrigger("hurt");
+            GetComponent<ITaskCompleter>().FindTask();
         };
     }
     

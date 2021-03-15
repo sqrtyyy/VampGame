@@ -63,7 +63,7 @@ Transform:
   m_LocalPosition: {x: 60.911, y: -0.807, z: 0}
   m_LocalScale: {x: 3.6150024, y: 3.3495328, z: 1}
   m_Children:
-  - {fileID: 4566793840262042518}
+  - {fileID: 3184384181659619264}
   - {fileID: 1378842222441102402}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -197,7 +197,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5214430f3e70da84b89dd40df904e8e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-
 --- !u!114 &531184552536714238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,9 +286,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aee782ba4f76b4d4a9880ae298cef17e, type: 3}
---- !u!4 &4566793840262042518 stripped
+--- !u!4 &3184384181659619264 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 7297330061104064041, guid: aee782ba4f76b4d4a9880ae298cef17e,
+  m_CorrespondingSourceObject: {fileID: 8508677663338019455, guid: aee782ba4f76b4d4a9880ae298cef17e,
     type: 3}
   m_PrefabInstance: {fileID: 6495828704535639487}
   m_PrefabAsset: {fileID: 0}
