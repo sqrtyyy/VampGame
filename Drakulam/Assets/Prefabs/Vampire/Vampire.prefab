@@ -172,6 +172,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4508945831261510693}
     m_Modifications:
+    - target: {fileID: 2537466877457691506, guid: b9a9693fe5a02c740963911f120107c6,
+        type: 3}
+      propertyPath: m_UseNormalMap
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3219679222478786656, guid: b9a9693fe5a02c740963911f120107c6,
         type: 3}
       propertyPath: m_RootOrder
@@ -231,6 +236,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: VampireLight
+      objectReference: {fileID: 0}
+    - target: {fileID: 7409038686891278827, guid: b9a9693fe5a02c740963911f120107c6,
+        type: 3}
+      propertyPath: m_UseNormalMap
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9a9693fe5a02c740963911f120107c6, type: 3}
