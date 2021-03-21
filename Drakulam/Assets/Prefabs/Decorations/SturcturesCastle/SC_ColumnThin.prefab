@@ -57,13 +57,14 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.08065516, y: -0.27974385}
-      - {x: 0.00036419276, y: -0.25549144}
-      - {x: -0.07716236, y: -0.27992284}
-      - {x: -0.07777267, y: -0.35581505}
-      - {x: -0.038887717, y: -0.3987415}
-      - {x: 0.04039021, y: -0.39892775}
-      - {x: 0.08270627, y: -0.36056617}
+    - - {x: 0.5034086, y: 0.9288972}
+      - {x: 0.014124767, y: 1.0859375}
+      - {x: -0.49720585, y: 0.9449779}
+      - {x: -0.4978161, y: 0.24850553}
+      - {x: -0.24213457, y: 0.002332151}
+      - {x: 0.24363708, y: 0.004855901}
+      - {x: 0.24673136, y: 0.007229537}
+      - {x: 0.50274974, y: 0.25730416}
 --- !u!1 &1381854566990905793
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,8 +132,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1352231167
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: -9032140515906453271, guid: a93a756c0fcfa624f81c2b1472ab8898,
     type: 3}
@@ -145,4 +146,4 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1

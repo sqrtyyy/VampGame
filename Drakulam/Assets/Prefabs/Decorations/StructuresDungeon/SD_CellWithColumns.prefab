@@ -47,7 +47,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.39829284, y: -0.28480065}
+  m_Offset: {x: -2.41244, y: 0.18571323}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -58,7 +58,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16058719, y: 0.23767638}
+  m_Size: {x: 0.9761448, y: 1.429644}
   m_EdgeRadius: 0
 --- !u!61 &3579235569883352194
 BoxCollider2D:
@@ -73,7 +73,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.4004342, y: -0.2848006}
+  m_Offset: {x: 2.5782402, y: 0.18571323}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -84,7 +84,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1605871, y: 0.23767638}
+  m_Size: {x: 0.98510695, y: 1.4296443}
   m_EdgeRadius: 0
 --- !u!61 &1959092269180325638
 BoxCollider2D:
@@ -99,7 +99,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0010707378, y: -0.24839765}
+  m_Offset: {x: 0.08566409, y: 0.39978474}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -110,7 +110,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6381104, y: 0.16272879}
+  m_Size: {x: 4.0153666, y: 0.9930606}
   m_EdgeRadius: 0
 --- !u!1 &1659384500441382262
 GameObject:
@@ -179,8 +179,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1352231167
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: -1800598261592292029, guid: 3019594dc8edd2b4a813bbfe27a91424,
     type: 3}
@@ -193,4 +193,4 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
