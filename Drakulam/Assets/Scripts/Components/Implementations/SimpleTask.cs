@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class SimpleTask : ITask
 {
-
+    private bool _isCompleted = false;
+    
     public override void StartTask()
     {
         Debug.Log("The task started");
+        _isCompleted = true;
+    }
+
+    public override void SabotageTask() { }
+    public override bool IsCompleted()
+    {
+        return _isCompleted;
     }
 }
