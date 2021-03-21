@@ -116,9 +116,12 @@ public class CharacterControl : IControllable
 
     private void MoveCamera()
     {
+        // offset of the camera by y-axis needed to center camera by human's sprite
+        float offsetY = 1.0f;
+
         Vector3 newPos = Camera.main.transform.position;
         newPos.x = body2D.position.x;
-        newPos.y = body2D.position.y;
+        newPos.y = body2D.position.y + offsetY;
         Camera.main.transform.position = newPos;
     }
     
