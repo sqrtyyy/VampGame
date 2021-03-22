@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdc5e1eccedb29e4894bbfab99032590, type: 3}
-  m_Name: ID_VaseGreenBroken3-5_Brush
+  m_Script: {fileID: 11500000, guid: 2d5751a2c961df945a34295ccf5e576d, type: 3}
+  m_Name: SD_CellOnly_Brush
   m_EditorClassIdentifier: 
   m_Cells:
   - m_Tile: {fileID: 0}
@@ -35,9 +35,6 @@ MonoBehaviour:
   m_Size: {x: 1, y: 1, z: 1}
   m_Pivot: {x: 0, y: 0, z: 0}
   m_CanChangeZPosition: 0
-  m_Anchor: {x: 0.5, y: 0, z: 0}
-  m_Prefabs:
-  - {fileID: 3749576270998305148, guid: 2935fe4321d8c9141ad50a49442d8599, type: 3}
-  - {fileID: 5122788761422180189, guid: ec436c38792fc0f408c578df9f7b7d0c, type: 3}
-  - {fileID: 2833415269488529869, guid: 360f7b0805272f94db848da180b79705, type: 3}
-  m_PerlinScale: 0.5
+  m_Anchor: {x: 0, y: 0.5, z: 0}
+  m_Prefab: {fileID: 6575257294069983254, guid: 77f21fca32027ce42bef541d2840eae1,
+    type: 3}

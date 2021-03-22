@@ -53,6 +53,9 @@ TextureImporter:
   - first:
       213: 4391451417118969845
     second: StructuresDungeon_1
+  - first:
+      213: -8635850731518116445
+    second: StructuresDungeon_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -502,6 +505,27 @@ TextureImporter:
       bones: []
       spriteID: 5ff03c50cc191fc30800000000000000
       internalID: 4391451417118969845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StructuresDungeon_2
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 535
+        width: 24
+        height: 71
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3adb09ea38b472880800000000000000
+      internalID: -8635850731518116445
       vertices: []
       indices: 
       edges: []
