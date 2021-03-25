@@ -17,4 +17,8 @@ public class SimpleTask : ITask
     {
         return _isCompleted;
     }
+    public override string GetTaskName()
+    {
+        return "Simple task.";
+    }
 }
