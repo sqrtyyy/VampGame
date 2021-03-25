@@ -11,7 +11,6 @@ public class TorchTask : ITask
         AddTaskManager(TaskManager.Instance());
 
         anim = GetComponent<Animator>();
-        light = gameObject.GetComponent<Light2D>();
         ChangeStatus();
     }
 
@@ -49,12 +48,17 @@ public class TorchTask : ITask
     private void ChangeStatus()
     {
         anim.SetBool("isOn", isOn);
-        light.enabled = isOn;
+        ChangeLightStatus(isOn);
         NotifyTaskManager(GetTaskName(), isOn);
     }
 
-
-    private Light2D light;
+    private void ChangeLightStatus(bool status)
+    {
+        foreach (Transform child in transform)
+        {
+            child.gameObject.GetComponent<Light2D>().enabled = status;
+        }
+    }
 
     public bool isOn;
 
