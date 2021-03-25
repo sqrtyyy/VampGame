@@ -3,7 +3,7 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 
-public class TaskManager
+public class TaskManager 
 {
 
     public TaskManager()
@@ -53,11 +53,11 @@ public class TaskManager
 
         }
 
-        /*foreach (KeyValuePair<string, Tuple<int, int>> entry in allTasks)
+        foreach (KeyValuePair<string, Tuple<int, int>> entry in allTasks)
         {
             Debug.Log($"task: {entry.Key}");
             Debug.Log($"active: {entry.Value.Item1} max {entry.Value.Item2}");
-        }*/
+        }
     }
 
 
@@ -97,6 +97,10 @@ public class TaskManager
         return true;
     }
 
+    public Dictionary<string, Tuple<int, int>> getAllTasks()
+    {
+        return allTasks;
+    }
 
     private static TaskManager _instance = null;
 

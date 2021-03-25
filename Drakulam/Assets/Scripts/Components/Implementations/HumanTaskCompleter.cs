@@ -16,6 +16,7 @@ public class HumanTaskCompleter : ITaskCompleter
         if (task)
         {
             task.GetComponent<ITask>().StartTask();
+            GetComponent<ICharacterInterface>().UpdateTaskList();
         }
         else
         {

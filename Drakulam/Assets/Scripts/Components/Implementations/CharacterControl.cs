@@ -46,6 +46,13 @@ public class CharacterControl : IControllable
             if (photonView.IsMine)
                 GetComponent<ITaskCompleter>().FindTask();
         };
+
+        //WATCH OUT
+        /*controller.Player.ShowTasks.performed += ctx =>
+        {
+            if (photonView.IsMine)
+                GetComponent<IICharacterInterface>().
+        }*/
     }
     
     
