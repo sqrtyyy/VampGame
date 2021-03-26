@@ -12,11 +12,6 @@ public class HumanHealth : IHealth
         GetComponent<ICharacterInterface>().SetMaxHealth(health);
     }
 
-    void Update()
-    {
-        GetComponent<ICharacterInterface>().UpdateHealthBar(health);
-    }
-
     public override void setHealth(int newHealth)
     {
         health = newHealth;

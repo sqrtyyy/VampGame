@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Collections;
 using System;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public abstract class ICharacterInterface : MonoBehaviour
 {
@@ -13,12 +14,11 @@ public abstract class ICharacterInterface : MonoBehaviour
 
     public abstract void UpdateHealthBar(int healthPoints);
 
-    public void ShowTasks()
-    {
+    public abstract void UpdateTimer(int minutes, int seconds);
 
-    }
+    public UnityEngine.UI.Slider healthBar;
 
-    public Text taskListText;
+    public GameObject taskList;
 
-    public Slider healthBar;
+    public Text timerText;
 }
