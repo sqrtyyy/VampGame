@@ -15,10 +15,10 @@ TagManager:
   - UI
   - 
   - 
+  - MiniMap
   - Vampire
   - Human
   - Task
-  - 
   - 
   - 
   - 
@@ -63,4 +63,7 @@ TagManager:
     locked: 0
   - name: Heaven
     uniqueID: 1153455421
+    locked: 0
+  - name: MinimapLight
+    uniqueID: 2871017805
     locked: 0
