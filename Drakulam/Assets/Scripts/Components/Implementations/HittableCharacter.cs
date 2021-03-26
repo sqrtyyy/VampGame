@@ -6,7 +6,7 @@ public class HittableCharacter : IHittable
 {
     public override void Hit(int damage)
     {
-        GetComponent<IHealth>().changeHealth(-damage);
         GetComponent<Animator>().SetTrigger("hurt");
+        GetComponent<IHealth>().changeHealth(-damage);
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class HumanHealth : IHealth
 {
     private Animator anim;
-
+    private float deathAnimationLength = 3.5f;
     protected void Start()
     {
         anim = GetComponent<Animator>();
@@ -25,20 +25,7 @@ public class HumanHealth : IHealth
         if (health <= 0)
         {
             anim.SetTrigger("death");
-            while (anim.GetCurrentAnimatorStateInfo(0).IsName("death")){};
-            Destroy(gameObject);
+            Destroy(gameObject, deathAnimationLength);
         }
-    }
-    
-    private IEnumerator Die()
-    {
-        // Play the animation for getting suck in
-        anim.SetTrigger("death");
-
-        yield return new WaitForSeconds(10);
-
-        // Move this object somewhere off the screen
-        
-
     }
 }
