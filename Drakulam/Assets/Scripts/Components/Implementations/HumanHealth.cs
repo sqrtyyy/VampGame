@@ -9,7 +9,9 @@ public class HumanHealth : IHealth
     protected void Start()
     {
         anim = GetComponent<Animator>();
+        GetComponent<ICharacterInterface>().SetMaxHealth(health);
     }
+
     public override void setHealth(int newHealth)
     {
         health = newHealth;
@@ -18,6 +20,7 @@ public class HumanHealth : IHealth
     public override void changeHealth(int delta)
     {
         health += delta;
+        GetComponent<ICharacterInterface>().UpdateHealthBar(health);
         Debug.Log(health);
         if (health <= 0)
         {

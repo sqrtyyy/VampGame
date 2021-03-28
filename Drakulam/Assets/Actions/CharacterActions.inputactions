@@ -52,6 +52,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "ShowTasks",
+                    "type": "Button",
+                    "id": "7ea90d9f-3c4a-4868-8a42-1397fc30be84",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -305,6 +313,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Hurt",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2558b5cf-41ad-4ab0-bbd0-fe8d766499f3",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShowTasks",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
