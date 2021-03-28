@@ -450,11 +450,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 131203474}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 282016ccdfd2d3543865e5b6b0d5f069, type: 3}
+  m_Script: {fileID: 11500000, guid: 5785ade255450fe41b491a19a0e25a8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   prefub: {fileID: 7340031989481642850, guid: 267f3cb2183e19a4ab2e06892ca75796, type: 3}
-  countText: 9
   content: {fileID: 131203475}
   lobbyManager: {fileID: 745224554}
 --- !u!114 &131203477
@@ -1176,7 +1175,6 @@ GameObject:
   m_Component:
   - component: {fileID: 745224555}
   - component: {fileID: 745224554}
-  - component: {fileID: 745224556}
   m_Layer: 0
   m_Name: Loddy Manager
   m_TagString: Untagged
@@ -1211,21 +1209,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &745224556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 745224553}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38a40b12ed5cecb49ad3d3f10643c89f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roomName: {fileID: 390323924}
-  roomPassword: {fileID: 752785025}
-  lobbyManager: {fileID: 745224554}
 --- !u!114 &752785025 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1153990174174965664, guid: 8cebb40861a480e4ea51f850a361da3a,
@@ -1347,6 +1330,7 @@ GameObject:
   - component: {fileID: 1078310562}
   - component: {fileID: 1078310561}
   - component: {fileID: 1078310560}
+  - component: {fileID: 1078310563}
   m_Layer: 5
   m_Name: CreateButton
   m_TagString: Untagged
@@ -1417,7 +1401,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 745224556}
+      - m_Target: {fileID: 1078310563}
         m_MethodName: CreateRoom
         m_Mode: 1
         m_Arguments:
@@ -1465,6 +1449,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1078310558}
   m_CullTransparentMesh: 0
+--- !u!114 &1078310563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078310558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e190e28e12ada8141a2773c818711cc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomName: {fileID: 390323924}
+  roomPassword: {fileID: 752785025}
+  lobbyManager: {fileID: 745224554}
 --- !u!224 &1095900718 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2717436199198249223, guid: 8cebb40861a480e4ea51f850a361da3a,
@@ -2732,7 +2731,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 131203476}
+      - m_Target: {fileID: 0}
         m_MethodName: UpdateItems
         m_Mode: 1
         m_Arguments:

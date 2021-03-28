@@ -8,7 +8,6 @@ using Photon.Realtime;
 public class RoomListInitializer : MonoBehaviour
 {
     public RectTransform prefub;
-    public int countText = 9;
     public RectTransform content;
     public LobbyManager lobbyManager;
 
