@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Photon.Pun;
 
 public class CharacterControl : IControllable
@@ -45,6 +46,16 @@ public class CharacterControl : IControllable
         {
             if (photonView.IsMine)
                 GetComponent<ITaskCompleter>().FindTask();
+        };
+
+        //WATCH OUT
+        controller.Player.ShowTasks.performed += ctx =>
+        {
+            if (photonView.IsMine)
+            {
+                GetComponent<ICharacterInterface>().taskList.active = !GetComponent<ICharacterInterface>().taskList.active;
+
+            }
         };
     }
     
