@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        var position = new Vector3(Random.Range(-5f, 5f) - 15f, 0, 0);
+        var position = new Vector3(Random.Range(-5f, 5f) - 24f, -24f, 0);
         PhotonNetwork.Instantiate(PlayerPrefab.name, position, Quaternion.identity);
     }
 
