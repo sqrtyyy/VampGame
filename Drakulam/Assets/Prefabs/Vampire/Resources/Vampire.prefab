@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 282220066240976199}
   - component: {fileID: 6422914474538277407}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: minimapIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -719,7 +719,7 @@ PrefabInstance:
     - target: {fileID: 4175992224785152090, guid: 3ac24dfbcaff30c47915da0bcaf0e656,
         type: 3}
       propertyPath: m_Size
-      value: 0.07031065
+      value: 0.070310645
       objectReference: {fileID: 0}
     - target: {fileID: 4200978314882976389, guid: 3ac24dfbcaff30c47915da0bcaf0e656,
         type: 3}
