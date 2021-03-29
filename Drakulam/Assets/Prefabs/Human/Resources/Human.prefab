@@ -205,6 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5214430f3e70da84b89dd40df904e8e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 0}
 --- !u!114 &531184552536714238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,7 +242,7 @@ MonoBehaviour:
   taskMask:
     serializedVersion: 2
     m_Bits: 1024
-  radius: 0
+  radius: 2
 --- !u!114 &3147023708365186666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,7 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c7dddce4d1d62e439dc42b18520461b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 10
+  maxSpeed: 30
 --- !u!114 &6722758638696107836
 MonoBehaviour:
   m_ObjectHideFlags: 0

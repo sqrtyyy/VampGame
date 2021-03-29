@@ -3,7 +3,15 @@ guid: 391a0f063ad6ffe4589ef1f8374f06a3
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _vampireSpawn: {fileID: 7035255292128774217, guid: 1742f34c5e9705c4791e267eee4e579f,
+      type: 3}
+  - _humanSpawn: {fileID: 9058047262888394597, guid: 51c568d0fc6e8fe448dc43ecb562d28b,
+      type: 3}
+  - _humanPrefab: {fileID: 4566793840482008395, guid: e0658376df237ef46a4303a79ccf5007,
+      type: 3}
+  - _vampPrefub: {fileID: 4508945831261510683, guid: a8ea308dad5e1004aa319830494661b3,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

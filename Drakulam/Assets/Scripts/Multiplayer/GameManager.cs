@@ -7,14 +7,29 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
-
-    public GameObject PlayerPrefab;
-
+    public Transform _vampireSpawn;
+    public Transform _humanSpawn;
+    public GameObject _humanPrefab;
+    public GameObject _vampPrefub;
+    
+    
     // Start is called before the first frame update
     void Start()
+    {        
+        if (PhotonNetwork.CurrentRoom.PlayerCount < PhotonNetwork.CurrentRoom.MaxPlayers)
+            SpawnHuman();
+        else
+            SpawnVampire();
+    }
+
+    private void SpawnHuman()
     {
-        var position = new Vector3(Random.Range(-5f, 5f) - 24f, -24f, 0);
-        PhotonNetwork.Instantiate(PlayerPrefab.name, position, Quaternion.identity);
+        PhotonNetwork.Instantiate(_humanPrefab.name, _humanSpawn.position, Quaternion.identity);
+    }
+
+    private void SpawnVampire()
+    {
+        PhotonNetwork.Instantiate(_vampPrefub.name, _vampireSpawn.position, Quaternion.identity);
     }
 
     // Update is called once per frame
@@ -39,4 +54,6 @@ public class GameManager : MonoBehaviourPunCallbacks
         Debug.Log("Player left the room" + otherPlayer.NickName);
         //base.OnPlayerLeftRoom(otherPlayer);
     }
+
+
 }
