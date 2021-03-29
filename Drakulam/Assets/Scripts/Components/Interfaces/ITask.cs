@@ -14,7 +14,7 @@ public abstract class ITask : MonoBehaviour
 
     //-------------------------------------//
 
-    /*public void AddTaskManager(TaskManager manager)
+    public void AddTaskManager(TaskManager manager)
     {
         taskManager = manager;
     }
@@ -24,5 +24,5 @@ public abstract class ITask : MonoBehaviour
         taskManager.Update(taskName, isTaskCompleted);
     }
 
-    private TaskManager taskManager; */ 
+    private TaskManager taskManager;
 }

@@ -5,11 +5,13 @@ using UnityEngine;
 public class HumanHealth : IHealth
 {
     private Animator anim;
-
+    private float deathAnimationLength = 3.5f;
     protected void Start()
     {
         anim = GetComponent<Animator>();
+        GetComponent<ICharacterInterface>().SetMaxHealth(health);
     }
+
     public override void setHealth(int newHealth)
     {
         health = newHealth;
@@ -18,24 +20,12 @@ public class HumanHealth : IHealth
     public override void changeHealth(int delta)
     {
         health += delta;
+        GetComponent<ICharacterInterface>().UpdateHealthBar(health);
         Debug.Log(health);
         if (health <= 0)
         {
             anim.SetTrigger("death");
-            while (anim.GetCurrentAnimatorStateInfo(0).IsName("death")){};
-            Destroy(gameObject);
+            Destroy(gameObject, deathAnimationLength);
         }
-    }
-    
-    private IEnumerator Die()
-    {
-        // Play the animation for getting suck in
-        anim.SetTrigger("death");
-
-        yield return new WaitForSeconds(10);
-
-        // Move this object somewhere off the screen
-        
-
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Photon.Pun;
 
 public class CharacterControl : IControllable
@@ -45,6 +46,16 @@ public class CharacterControl : IControllable
         {
             if (photonView.IsMine)
                 GetComponent<ITaskCompleter>().FindTask();
+        };
+
+        //WATCH OUT
+        controller.Player.ShowTasks.performed += ctx =>
+        {
+            if (photonView.IsMine)
+            {
+                GetComponent<ICharacterInterface>().taskList.active = !GetComponent<ICharacterInterface>().taskList.active;
+
+            }
         };
     }
     
@@ -116,9 +127,12 @@ public class CharacterControl : IControllable
 
     private void MoveCamera()
     {
+        // offset of the camera by y-axis needed to center camera by human's sprite
+        float offsetY = 1.0f;
+
         Vector3 newPos = Camera.main.transform.position;
         newPos.x = body2D.position.x;
-        newPos.y = body2D.position.y;
+        newPos.y = body2D.position.y + offsetY;
         Camera.main.transform.position = newPos;
     }
     

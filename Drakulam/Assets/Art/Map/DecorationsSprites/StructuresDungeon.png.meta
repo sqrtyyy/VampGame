@@ -1,0 +1,550 @@
+fileFormatVersion: 2
+guid: 3019594dc8edd2b4a813bbfe27a91424
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5226694724807313615
+    second: StructuresDungeon_5
+  - first:
+      213: 4297623008152167951
+    second: StructuresDungeon_8
+  - first:
+      213: -1800598261592292029
+    second: StructuresDungeon_9
+  - first:
+      213: 4067846602955331720
+    second: StructuresDungeon_12
+  - first:
+      213: 7459957848859371159
+    second: StructuresDungeon_13
+  - first:
+      213: 2962241264262619178
+    second: StructuresDungeon_14
+  - first:
+      213: -3318179740890138561
+    second: StructuresDungeon_15
+  - first:
+      213: 6930880036131330755
+    second: StructuresDungeon_16
+  - first:
+      213: -2574316620153131260
+    second: StructuresDungeon_17
+  - first:
+      213: 7456951646505827418
+    second: StructuresDungeon_18
+  - first:
+      213: 8068326104966400262
+    second: StructuresDungeon_19
+  - first:
+      213: 2773540771051652167
+    second: StructuresDungeon_20
+  - first:
+      213: -5951074403400695295
+    second: StructuresDungeon_46
+  - first:
+      213: -3452989704060082120
+    second: StructuresDungeon_66
+  - first:
+      213: -1808610639291856523
+    second: StructuresDungeon_4
+  - first:
+      213: -9133928555891116663
+    second: StructuresDungeon_0
+  - first:
+      213: 4391451417118969845
+    second: StructuresDungeon_1
+  - first:
+      213: -8635850731518116445
+    second: StructuresDungeon_2
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: StructuresDungeon_5
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 535
+        width: 80
+        height: 89
+      alignment: 9
+      pivot: {x: -101.9, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 137b37a07dc0777b0800000000000000
+      internalID: -5226694724807313615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StructuresDungeon_8
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 450
+        width: 192
+        height: 75
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f06a47b2b5934ab30800000000000000
+      internalID: 4297623008152167951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StructuresDungeon_9
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 528
+        width: 96
+        height: 80
+      alignment: 9
+      pivot: {x: -84.84667, y: 0.10690689}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3450b9acb6df207e0800000000000000
+      internalID: -1800598261592292029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StructuresDungeon_12
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 448
+        width: 16
+        height: 80
+      alignment: 9
+      pivot: {x: -511.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8889ee9dee4e37830800000000000000
+      internalID: 4067846602955331720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StructuresDungeon_13
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 453
+        width: 16
+        height: 75
+      alignment: 9
+      pivot: {x: -511.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79666a49328178760800000000000000
+      internalID: 7459957848859371159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StructuresDungeon_14
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 448
+        width: 16
+        height: 80
+      alignment: 9
+      pivot: {x: -511.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a20a0673cbefb1920800000000000000
+      internalID: 2962241264262619178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StructuresDungeon_15
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 496
+        width: 64
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f38785b2b1573f1d0800000000000000
+      internalID: -3318179740890138561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StructuresDungeon_16
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 448
+        width: 32
+        height: 57
+      alignment: 9
+      pivot: {x: -255.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ca5476ebae6f2060800000000000000
+      internalID: 6930880036131330755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StructuresDungeon_17
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 448
+        width: 16
+        height: 80
+      alignment: 9
+      pivot: {x: -511.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40f636c5ca0364cd0800000000000000
+      internalID: -2574316620153131260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StructuresDungeon_18
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 448
+        width: 16
+        height: 48
+      alignment: 9
+      pivot: {x: -511.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5c7e3d830a6c7760800000000000000
+      internalID: 7456951646505827418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StructuresDungeon_19
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 448
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: -255.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 609888a38d378ff60800000000000000
+      internalID: 8068326104966400262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StructuresDungeon_20
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 370
+        width: 191
+        height: 75
+      alignment: 9
+      pivot: {x: 0.50364614, y: 0.16095296}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 744c89ce2a89d7620800000000000000
+      internalID: 2773540771051652167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StructuresDungeon_46
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 226
+        width: 190
+        height: 75
+      alignment: 9
+      pivot: {x: 0.50122166, y: 0.17642924}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 102c1693c59896da0800000000000000
+      internalID: -5951074403400695295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StructuresDungeon_66
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 146
+        width: 191
+        height: 75
+      alignment: 9
+      pivot: {x: 0.5012152, y: 0.17642945}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 838ea6ca8248410d0800000000000000
+      internalID: -3452989704060082120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StructuresDungeon_4
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 535
+        width: 65
+        height: 73
+      alignment: 9
+      pivot: {x: -125.53077, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 579440cb43686e6e0800000000000000
+      internalID: -1808610639291856523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StructuresDungeon_0
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 535
+        width: 16
+        height: 73
+      alignment: 9
+      pivot: {x: -511.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 985305e3f54cd3180800000000000000
+      internalID: -9133928555891116663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StructuresDungeon_1
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 535
+        width: 17
+        height: 73
+      alignment: 9
+      pivot: {x: -481.38235, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ff03c50cc191fc30800000000000000
+      internalID: 4391451417118969845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StructuresDungeon_2
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 535
+        width: 24
+        height: 71
+      alignment: 9
+      pivot: {x: -340.83334, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3adb09ea38b472880800000000000000
+      internalID: -8635850731518116445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures:
+    - texture: {fileID: 2800000, guid: b8cfe5fb8df628e4aa08f308d885bb71, type: 3}
+      name: _NormalMap
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

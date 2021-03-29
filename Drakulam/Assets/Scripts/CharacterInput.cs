@@ -65,6 +65,14 @@ public class @CharacterInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""ShowTasks"",
+                    ""type"": ""Button"",
+                    ""id"": ""7ea90d9f-3c4a-4868-8a42-1397fc30be84"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -318,6 +326,17 @@ public class @CharacterInput : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Hurt"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2558b5cf-41ad-4ab0-bbd0-fe8d766499f3"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowTasks"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -901,6 +920,7 @@ public class @CharacterInput : IInputActionCollection, IDisposable
         m_Player_Atack = m_Player.FindAction("Atack", throwIfNotFound: true);
         m_Player_Die = m_Player.FindAction("Die", throwIfNotFound: true);
         m_Player_Hurt = m_Player.FindAction("Hurt", throwIfNotFound: true);
+        m_Player_ShowTasks = m_Player.FindAction("ShowTasks", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -968,6 +988,7 @@ public class @CharacterInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Atack;
     private readonly InputAction m_Player_Die;
     private readonly InputAction m_Player_Hurt;
+    private readonly InputAction m_Player_ShowTasks;
     public struct PlayerActions
     {
         private @CharacterInput m_Wrapper;
@@ -978,6 +999,7 @@ public class @CharacterInput : IInputActionCollection, IDisposable
         public InputAction @Atack => m_Wrapper.m_Player_Atack;
         public InputAction @Die => m_Wrapper.m_Player_Die;
         public InputAction @Hurt => m_Wrapper.m_Player_Hurt;
+        public InputAction @ShowTasks => m_Wrapper.m_Player_ShowTasks;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1005,6 +1027,9 @@ public class @CharacterInput : IInputActionCollection, IDisposable
                 @Hurt.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHurt;
                 @Hurt.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHurt;
                 @Hurt.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHurt;
+                @ShowTasks.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShowTasks;
+                @ShowTasks.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShowTasks;
+                @ShowTasks.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShowTasks;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1027,6 +1052,9 @@ public class @CharacterInput : IInputActionCollection, IDisposable
                 @Hurt.started += instance.OnHurt;
                 @Hurt.performed += instance.OnHurt;
                 @Hurt.canceled += instance.OnHurt;
+                @ShowTasks.started += instance.OnShowTasks;
+                @ShowTasks.performed += instance.OnShowTasks;
+                @ShowTasks.canceled += instance.OnShowTasks;
             }
         }
     }
@@ -1189,6 +1217,7 @@ public class @CharacterInput : IInputActionCollection, IDisposable
         void OnAtack(InputAction.CallbackContext context);
         void OnDie(InputAction.CallbackContext context);
         void OnHurt(InputAction.CallbackContext context);
+        void OnShowTasks(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
