@@ -8,16 +8,15 @@ using Random = System.Random;
 public class TaskDestroyedWall : ITask
 {
     private static Random _randomize = new Random();
-    private const int _randomBrickStart = 1;
-    private const int _randomBrickEnd = 11;
+    private const int _randomBrickNum = 11;
     //private const int _choosableBricksNumber = 3;
-    private const string _brickImageName = "Brick_";
+    private int _answer = -1;
 
     private Point[] _brickCenters = new Point[]
     {
-        new Point(-7, 20), new Point(13, 20), new Point(-15, 10),
-        new Point(5, 10), new Point(-11, 1), new Point(10, 1), new Point(-6, -8),
-        new Point(14, -8), new Point(-16, -18), new Point(-1, -18), new Point(14, -18)
+        new Point(129, 173), new Point(327, 173), new Point(56, 89),
+        new Point(244, 89), new Point(97, 9), new Point(295, 9), new Point(141, -76),
+        new Point(330, -76), new Point(51, -164), new Point(184, -164), new Point(337, -164)
     };
     private bool _isCompleted = false;
     public Sprite[] bricksSprites;
@@ -25,15 +24,22 @@ public class TaskDestroyedWall : ITask
     public GameObject crack;
     public GameObject[] bricks;
 
+    
+    
     public override void StartTask()
     {
+        if (_isCompleted == true)
+            return;
         _InitializeGame();
         graphics.SetActive(true);
-        while(true) {}
-        _isCompleted = true;
+        NotifyTaskManager(GetTaskName(), _isCompleted);
     }
 
-    public override void SabotageTask() { }
+    public override void SabotageTask()
+    {
+        _isCompleted = false;
+        NotifyTaskManager(GetTaskName(), _isCompleted);
+    }
     public override bool IsCompleted()
     {
         return _isCompleted;
@@ -41,10 +47,10 @@ public class TaskDestroyedWall : ITask
 
     private void _InitializeGame()
     {
-        var choosableBricks = new int[_randomBrickEnd];
+        var choosableBricks = new int[_randomBrickNum];
         
         // generate random sequense of possible bricks
-        for (int i = 0; i < _randomBrickEnd; ++i)
+        for (int i = 0; i < _randomBrickNum; ++i)
         {
             int j = _randomize.Next(i + 1);
             if (j != i)
@@ -54,15 +60,33 @@ public class TaskDestroyedWall : ITask
         //pick only bricks.Length first bricks from random sequense from previous step
         for (int i = 0; i < bricks.Length; ++i)
             bricks[i].GetComponent<Image>().sprite = bricksSprites[choosableBricks[i]];
-        int k = _randomize.Next(bricks.Length);
-        var destroyedBrick = choosableBricks[k];
-        crack.GetComponent<RectTransform>().position = new Vector3(
-            _brickCenters[destroyedBrick].X, _brickCenters[destroyedBrick].Y, 0);
-        ;
+        _answer = _randomize.Next(bricks.Length - 1);
+        Debug.Log(_answer);
+        var destroyedBrick = choosableBricks[_answer];
         
+        crack.GetComponent<RectTransform>().localPosition = new Vector3( _brickCenters[destroyedBrick].X, _brickCenters[destroyedBrick].Y, 0);
+    
     }
     public override string GetTaskName()
     {
-        return "Destroyed wall task.";
+        return "Почините разрушенную стену.";
+    }
+
+    public void CloseGame()
+    {
+        graphics.SetActive(false);
+    }
+
+    public void CheckAnswer(int brickIndex)
+    {
+        Debug.Log("Проверяем ответ "+ brickIndex.ToString());
+        if (brickIndex == _answer)
+        {
+            _isCompleted = true;
+            _answer = -1;
+            CloseGame();
+            NotifyTaskManager(GetTaskName(), _isCompleted);
+        }
+
     }
 }
