@@ -10,13 +10,26 @@ public class VampireTaskDisabler : ITaskCompleter
 
     public float radius;
 
+    private static float coolDown = 15;
+    private static float prevTime = -15;
+
     public override void FindTask()
     {
         Collider2D task = Physics2D.OverlapCircle(center.position, radius, taskMask);
         if (task)
         {
-            task.GetComponent<ITask>().SabotageTask();
-            GetComponent<ICharacterInterface>().UpdateTaskList();
+            float curTime = Time.time;
+            if (curTime - prevTime > coolDown)
+            {
+                task.GetComponent<ITask>().SabotageTask();
+                GetComponent<ICharacterInterface>().UpdateTaskList();
+            }
+            else
+            {
+                Debug.Log("Cool Down remains: " + (coolDown - curTime - prevTime));
+            }
+
+            prevTime = curTime;
         }
         else
         {
