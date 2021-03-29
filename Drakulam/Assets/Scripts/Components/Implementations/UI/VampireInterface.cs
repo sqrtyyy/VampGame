@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System;
 
-public class VampireInterace : ICharacterInterface
+public class VampireInterface : ICharacterInterface
 {
     void Start()
     {

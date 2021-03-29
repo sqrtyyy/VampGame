@@ -16,6 +16,7 @@ public class VampireTaskDisabler : ITaskCompleter
         if (task)
         {
             task.GetComponent<ITask>().SabotageTask();
+            GetComponent<ICharacterInterface>().UpdateTaskList();
         }
         else
         {

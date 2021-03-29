@@ -6,7 +6,7 @@ using UnityEngine.Experimental.Rendering.Universal;
 public class TorchTask : ITask
 {
 
-    void Start()
+    void Awake()
     {
         AddTaskManager(TaskManager.Instance());
 
@@ -35,7 +35,7 @@ public class TorchTask : ITask
 
     public override string GetTaskName()
     {
-        return "Зажгите факела";
+        return "Зажечь факела";
     }
 
 

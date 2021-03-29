@@ -22,7 +22,7 @@ public class GameTimer : MonoBehaviour
         // It can be a loosing case for humans
         if (elapsedTime >= gameTime)
         {
-             
+            GetComponent<ICharacterInterface>().UpdateTimer(0, 0);
         }
     }
 
