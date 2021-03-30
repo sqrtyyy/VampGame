@@ -1,19 +1,39 @@
 # Release Notes 
 
+# Version 3.0
+
+## What's new
+  * UI 
+  * Tasks mechanics
+  * Task with torches
+  * Ability to create room in multiplayer mode
+  * Ability to find room in multiplayer mode
+  * Some rooms decorated
+  
+
+## What's improved
+  * Fixed characters collision bug
+  * Fixed bug with displaying decorations texture
+  * Fixed bug with displaying characters relative to objects on map
+  * Improved characters interaction (with animations)
+  * Improved normal maps
+  * More smooth transitions between rooms on map
+  
+
 # Version 2.0
 
 ## What's new
- * multiplayer
- * interaction between human and vampire
- * interaction between human and tasks
- * light on the map
- * normal maps for some tiles
+ * Multiplayer
+ * Interaction between human and vampire
+ * Interaction between human and tasks
+ * Light on the map
+ * Normal maps for some tiles
  
 
 ## What's improved
-  * updated better sprites of human and vampire
-  * updated human and vampire animations
-  * all rooms at map are decorated now
+  * Updated better sprites of human and vampire
+  * Updated human and vampire animations
+  * All rooms at map are decorated now
   
 
 # Version 1.0
