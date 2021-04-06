@@ -23,13 +23,12 @@ public class VampireTaskDisabler : ITaskCompleter
             {
                 task.GetComponent<ITask>().SabotageTask();
                 GetComponent<ICharacterInterface>().UpdateTaskList();
+                prevTime = curTime;
             }
             else
             {
                 Debug.Log("Cool Down remains: " + (coolDown - curTime - prevTime));
             }
-
-            prevTime = curTime;
         }
         else
         {
