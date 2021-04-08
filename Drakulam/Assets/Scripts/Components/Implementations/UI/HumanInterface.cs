@@ -1,19 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 using UnityEngine.UI;
-using System.Collections;
 using System;
+using Photon.Pun;
 
 public class HumanInterface : ICharacterInterface
 {
+    private PhotonView photonView;
     void Start()
     {
-        UpdateTaskList();
-
+        photonView = PhotonView.Get(this);
+        AsyncUpdateTaskList();
     }
 
     public override void UpdateTaskList()
+    {
+        AsyncUpdateTaskList();
+        photonView.RPC("AsyncUpdateTaskList", RpcTarget.Others);
+    }
+
+    [PunRPC]
+    private void AsyncUpdateTaskList()
     {
         Text taskListText = taskList.transform.Find("Viewport/Content/Text").GetComponent<Text>();
 
