@@ -11,7 +11,14 @@ public class VampireTaskDisabler : ITaskCompleter
     public float radius;
 
     private static float coolDown = 15;
-    private static float prevTime = -15;
+    private static float prevSabotageTime = -15;
+
+    public static float getPercents()
+    {
+        float curTime = Time.time;
+        float deltaTime = curTime - prevSabotageTime;
+        return coolDown < deltaTime ? 1 : deltaTime / coolDown;
+    }
 
     public override void FindTask()
     {
@@ -19,15 +26,17 @@ public class VampireTaskDisabler : ITaskCompleter
         if (task)
         {
             float curTime = Time.time;
-            if (curTime - prevTime > coolDown)
+            if (curTime - prevSabotageTime > coolDown)
             {
+                Debug.Log("SABOTAGE!!!!!");
+                prevSabotageTime = curTime;
                 task.GetComponent<ITask>().SabotageTask();
                 GetComponent<ICharacterInterface>().UpdateTaskList();
                 prevTime = curTime;
             }
             else
             {
-                Debug.Log("Cool Down remains: " + (coolDown - curTime - prevTime));
+                Debug.Log("Cool Down remains: " + (coolDown - curTime + prevSabotageTime));
             }
         }
         else
