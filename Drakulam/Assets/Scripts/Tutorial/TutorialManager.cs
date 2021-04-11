@@ -15,6 +15,9 @@ public class TutorialManager : MonoBehaviour
     public GameObject invisibleWall;
     private HumanHealth _humanHealth;
     private HumanHealth _vampireHealth;
+    private Transform _humanPose;
+    private Transform _vampirePose;
+    private Rigidbody2D _vampireBody;
     private int popUpIndex;
 
     private const int TutorialHMove = 0;
@@ -49,6 +52,8 @@ public class TutorialManager : MonoBehaviour
         human.GetComponent<CharacterControl>().gameObject.SetActive(true);
         vampire.GetComponent<CharacterControl>().gameObject.SetActive(false);
         popUps[0].SetActive(true);
+        _humanHealth.setHealth(10);
+        _vampireHealth.setHealth(500);
     }
     
     private void EndHumanTutorial()
@@ -59,12 +64,13 @@ public class TutorialManager : MonoBehaviour
     
     private void InitializeVampireTutorial()
     {
-        humanUI.SetActive(false);
+        //humanUI.SetActive(false);
         vampireUI.SetActive(true);
         vampire.GetComponent<Transform>().position = new Vector3(-94.22f, 26.3f, -3.29f);
-        human.GetComponent<Transform>().position = new Vector3(-107.46f, -2.42f, 0);
-        human.GetComponent<CharacterControl>().gameObject.SetActive(false);
+        //_humanPose.position = new Vector3(-107.46f, -2.42f, 0);
+        //human.GetComponent<CharacterControl>().gameObject.SetActive(false);
         vampire.GetComponent<CharacterControl>().gameObject.SetActive(true);
+        Debug.Log("InitializeVampireTutorial ended");
     }
     
     private void EndVampireTutorial()
@@ -74,16 +80,19 @@ public class TutorialManager : MonoBehaviour
 
     private void HumanDeathStep()
     {
-        // move vampire or hit human
+        _vampirePose.position = _humanPose.position - new Vector3(0, 1, 0);
+        vampire.GetComponent<IDamageDealer>().Attack();
     }
 
     void Start()
     {
-        InitializeHumanTutorial();
         popUpIndex = 0;
         _humanHealth = human.GetComponent<HumanHealth>();
+        Debug.Log(_humanHealth);
         _vampireHealth = vampire.GetComponent<HumanHealth>();
         InitializeHumanTutorial();
+        _humanPose = human.GetComponent<Transform>();
+        _vampirePose = vampire.GetComponent<Transform>();
     }
 
     void Update()
@@ -92,7 +101,8 @@ public class TutorialManager : MonoBehaviour
         if (popUpIndex == TutorialHTask && task.IsCompleted())
             CompleteStep();
         else if (popUpIndex == TutorialVHumanDeath)
-        { if(_humanHealth.getHealth() == 0)
+        {
+            if(human == null || _humanHealth.getHealth() == 0)
             {
                 EndHumanTutorial();
                 InitializeVampireTutorial();
@@ -121,6 +131,7 @@ public class TutorialManager : MonoBehaviour
         {
             CompleteStep();
             invisibleWall.SetActive(false);
+            vampire.SetActive(true);
         }
     }
 

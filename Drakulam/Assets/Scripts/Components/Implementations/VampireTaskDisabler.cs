@@ -32,7 +32,7 @@ public class VampireTaskDisabler : ITaskCompleter
                 prevSabotageTime = curTime;
                 task.GetComponent<ITask>().SabotageTask();
                 GetComponent<ICharacterInterface>().UpdateTaskList();
-                prevTime = curTime;
+                prevSabotageTime = curTime; // changed "prevTime" to prevSabotageTime because errors used to be here
             }
             else
             {

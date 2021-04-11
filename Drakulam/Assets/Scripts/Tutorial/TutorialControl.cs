@@ -6,12 +6,24 @@ using UnityEngine;
 public class TutorialControl : IControllable
 {
     private TutoriaInput _tutorialManager;
+    public TutorialManager manager;
 
     private void Awake()
     {
         _tutorialManager = new TutoriaInput();
-        _tutorialManager.Tutorial.atack.performed += ctx => { GetComponent<TutorialManager>().AttackTrigger(); };
-        _tutorialManager.Tutorial.next.performed += ctx => { GetComponent<TutorialManager>().NextTrigger(); };
-        _tutorialManager.Tutorial.move.performed += ctx => { GetComponent<TutorialManager>().MoveTrigger(); };
+        _tutorialManager.Tutorial.atack.canceled += ctx => { manager.AttackTrigger(); };
+        _tutorialManager.Tutorial.next.performed += ctx => { manager.NextTrigger(); };
+        _tutorialManager.Tutorial.move.canceled += ctx => { manager.MoveTrigger(); };
+   
+    }
+
+    private void OnEnable()
+    {
+        _tutorialManager.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _tutorialManager.Disable();
     }
 }
