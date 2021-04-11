@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
-public class VampireTaskDisabler : ITaskCompleter
+public class VampireTaskDisabler : ITaskCompleter, IPunObservable
 {
     public Transform center;
 
@@ -12,6 +13,8 @@ public class VampireTaskDisabler : ITaskCompleter
 
     private static float coolDown = 15;
     private static float prevSabotageTime = -15;
+    
+    private PhotonView photonView;
 
     public static float getPercents()
     {
@@ -22,6 +25,7 @@ public class VampireTaskDisabler : ITaskCompleter
 
     public override void FindTask()
     {
+        if (!photonView.IsMine) return;
         Collider2D task = Physics2D.OverlapCircle(center.position, radius, taskMask);
         if (task)
         {
@@ -36,7 +40,7 @@ public class VampireTaskDisabler : ITaskCompleter
             }
             else
             {
-                Debug.Log("Cool Down remains: " + (coolDown - curTime + prevSabotageTime));
+                Debug.LogWarning("Cool Down remains: " + (coolDown - curTime + prevSabotageTime));
             }
         }
         else
@@ -44,4 +48,26 @@ public class VampireTaskDisabler : ITaskCompleter
             Debug.Log("Tasks are not found");
         }
     }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(Time.time - prevSabotageTime);
+        }
+        else
+        {
+            float otherDeltaTime= (float) stream.ReceiveNext();
+            if (Time.time - prevSabotageTime > otherDeltaTime)
+            {
+                prevSabotageTime = Time.time - otherDeltaTime;
+            }
+        }
+    }
+
+    void Start()
+    {
+        photonView = GetComponent<PhotonView>();
+    }
+    
 }
