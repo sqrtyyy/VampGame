@@ -36,7 +36,6 @@ public class VampireTaskDisabler : ITaskCompleter, IPunObservable
                 prevSabotageTime = curTime;
                 task.GetComponent<ITask>().SabotageTask();
                 GetComponent<ICharacterInterface>().UpdateTaskList();
-                prevTime = curTime;
             }
             else
             {
