@@ -892,8 +892,8 @@ TextureImporter:
         y: 539
         width: 58
         height: 111
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -913,8 +913,8 @@ TextureImporter:
         y: 537
         width: 56
         height: 113
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -994,7 +994,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 321
-        y: 360
+        y: 362
         width: 63
         height: 109
       alignment: 7
@@ -1476,7 +1476,7 @@ TextureImporter:
       name: VampireSpriteSheet_103
       rect:
         serializedVersion: 2
-        x: 452
+        x: 454
         y: 44
         width: 57
         height: 107

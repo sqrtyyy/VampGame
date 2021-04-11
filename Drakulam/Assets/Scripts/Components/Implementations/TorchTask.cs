@@ -1,13 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
+using Photon.Pun;
 
 public class TorchTask : ITask
 {
+    private PhotonView photonView;
 
     void Awake()
     {
+        photonView = PhotonView.Get(this);
         AddTaskManager(TaskManager.Instance());
 
         anim = GetComponent<Animator>();
@@ -15,6 +16,13 @@ public class TorchTask : ITask
     }
 
     public override void StartTask()
+    {
+        AsyncStartTask();
+        photonView.RPC("AsyncStartTask", RpcTarget.Others);
+    }
+
+    [PunRPC]
+    private void AsyncStartTask()
     {
         if (!IsCompleted())
         {
@@ -24,6 +32,13 @@ public class TorchTask : ITask
     }
 
     public override void SabotageTask()
+    {
+        AsyncSabotageTask();
+        photonView.RPC("AsyncSabotageTask", RpcTarget.Others);
+    }
+
+    [PunRPC]
+    private void AsyncSabotageTask()
     {
         if (IsCompleted())
         {
