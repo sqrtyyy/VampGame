@@ -9,10 +9,12 @@ public class TutorialManager : MonoBehaviour
     public GameObject[] popUps;
     public GameObject human;
     public GameObject vampire;
-    public GameObject humanUI;
-    public GameObject vampireUI;
+    /*public GameObject humanUI;
+    public GameObject vampireUI;*/
     public ITask task;
     public GameObject invisibleWall;
+    public Transform _humanUI;
+    public Transform _VampUI;
     private HumanHealth _humanHealth;
     private HumanHealth _vampireHealth;
     private Transform _humanPose;
@@ -42,8 +44,10 @@ public class TutorialManager : MonoBehaviour
 
     private void InitializeHumanTutorial()
     {
-        vampireUI.SetActive(false);
-        humanUI.SetActive(true);
+        /*vampireUI.SetActive(false);
+        humanUI.SetActive(true);*/
+        human.GetComponent<ICharacterInterface>().SetUI(_humanUI.name);
+        vampire.GetComponent<ICharacterInterface>().SetUI(_VampUI.name);
         human.GetComponent<Transform>().position = new Vector3(-94.22f, 26.3f, 0);
         vampire.GetComponent<Transform>().position = new Vector3(-107.46f, -2.42f, -3.29f);
         invisibleWall.SetActive(true);
@@ -63,7 +67,7 @@ public class TutorialManager : MonoBehaviour
     private void InitializeVampireTutorial()
     {
         //humanUI.SetActive(false);
-        vampireUI.SetActive(true);
+        //vampireUI.SetActive(true);
         vampire.GetComponent<Transform>().position = new Vector3(-94.22f, 26.3f, -3.29f);
         //_humanPose.position = new Vector3(-107.46f, -2.42f, 0);
         //human.GetComponent<CharacterControl>().gameObject.SetActive(false);

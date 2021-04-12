@@ -81,8 +81,7 @@ public class TaskManager
 
     }
 
-
-    private bool IsAllTasksCompleted()
+    public bool IsAllTasksCompleted()
     {
         foreach (KeyValuePair<string, Tuple<int, int>> entry in allTasks)
         {

@@ -22,7 +22,7 @@ public class HumanInterface : ICharacterInterface
     [PunRPC]
     private void AsyncUpdateTaskList()
     {
-        Text taskListText = taskList.transform.Find("Viewport/Content/Text").GetComponent<Text>();
+        Text taskListText = taskList.Find("Viewport/Content/Text").GetComponent<Text>();
 
         Dictionary<string, Tuple<int, int>> allTasks = TaskManager.Instance().getAllTasks();
         taskListText.text = " Нужно: \n";
