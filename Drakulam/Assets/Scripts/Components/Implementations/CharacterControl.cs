@@ -6,7 +6,7 @@ using Photon.Pun;
 
 public class CharacterControl : IControllable
 {
-    
+
     private CharacterInput controller;
     private Rigidbody2D body2D;
     
@@ -53,7 +53,7 @@ public class CharacterControl : IControllable
         {
             if (photonView.IsMine)
             {
-                GetComponent<ICharacterInterface>().taskList.active = !GetComponent<ICharacterInterface>().taskList.active;
+                //GetComponent<ICharacterInterface>().taskList.active = !GetComponent<ICharacterInterface>().taskList.active;
 
             }
         };

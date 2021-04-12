@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System;
 using Photon.Pun;
+using UnityEngine;
 
 public class HumanInterface : ICharacterInterface
 {
@@ -36,18 +37,33 @@ public class HumanInterface : ICharacterInterface
 
     public override void SetMaxHealth(int healthPoints)
     {
+        if (healthBar == null)
+            return;
         healthBar.maxValue = healthPoints;
         healthBar.value = healthPoints;
     }
 
     public override void UpdateHealthBar(int healthPoints)
     {
+        if (healthBar == null)
+            return;
         healthBar.value = healthPoints;
     }
 
     public override void UpdateTimer(int minutes, int seconds)
     {
+        if (timerText == null)
+            return;
         string gameTimerString = string.Format("{0:0}:{1:00}", minutes, seconds);
         timerText.text = gameTimerString;
+    }
+
+    public override void SetUI(string uiName)
+    {
+        /*if (!photonView.IsMine)
+            return;*/
+        healthBar = Camera.main.transform.Find(uiName).Find("HealthBar").GetComponent<Slider>();
+        taskList = Camera.main.transform.Find(uiName).Find("TaskList");
+        timerText = Camera.main.transform.Find(uiName).Find("Timer").GetComponent<Text>();
     }
 }
