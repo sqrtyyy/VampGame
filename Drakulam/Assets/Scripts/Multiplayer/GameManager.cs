@@ -12,7 +12,12 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject _humanPrefab;
     public GameObject _vampPrefub;
 
+    public Transform _humanUI;
+    public Transform _vampUI;
+
     private GameObject player;
+
+    private string uiName;
     
     // Start is called before the first frame update
     void Start()
@@ -25,12 +30,21 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     private void SpawnHuman()
     {
+        _humanUI.name = "UI";
+        Transform UI = Instantiate<Transform>(_humanUI);
+        UI.SetParent(Camera.main.transform);
         player = PhotonNetwork.Instantiate(_humanPrefab.name, _humanSpawn.position, Quaternion.identity);
+        player.GetComponent<ICharacterInterface>().SetUI(UI.name);
+        uiName = UI.name;
     }
 
     private void SpawnVampire()
     {
+        Transform UI = Instantiate<Transform>(_vampUI);
+        UI.SetParent(Camera.main.transform);
         player = PhotonNetwork.Instantiate(_vampPrefub.name, _vampireSpawn.position, Quaternion.identity);
+        player.GetComponent<ICharacterInterface>().SetUI(UI.name);
+        uiName = UI.name;
     }
 
     // Update is called once per frame
@@ -43,7 +57,10 @@ public class GameManager : MonoBehaviourPunCallbacks
          * It would be nice to sort this out by the second demo. 
          */
         if (player == null) //
-            SpawnVampire();
+        {
+            player = PhotonNetwork.Instantiate(_vampPrefub.name, _vampireSpawn.position, Quaternion.identity);
+            player.GetComponent<ICharacterInterface>().SetUI(uiName);
+        }
         //________________________________________
         //
 

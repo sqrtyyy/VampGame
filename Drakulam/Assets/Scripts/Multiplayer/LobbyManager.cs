@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
-    private byte countPlayers = 2;
+    private byte countPlayers = 5;
     public List<RoomInfo> roomList;
     public RoomListInitializer roomListInitializer;
     //public RoomListInitializer roomListInitializer;
@@ -50,7 +50,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
         if (!PhotonNetwork.IsConnectedAndReady)
             return;
-        PhotonNetwork.CreateRoom(name, new Photon.Realtime.RoomOptions { MaxPlayers = countPlayers });
+        PhotonNetwork.CreateRoom(name, new Photon.Realtime.RoomOptions { MaxPlayers = countPlayers, IsOpen = true, IsVisible = true });
     }
 
     public void JoinRoom(string name, string password)
@@ -61,7 +61,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public override void OnRoomListUpdate(List<RoomInfo> RoomList)
     {
         Debug.Log("Room list:");
-        this.roomList = RoomList;
+        roomList = RoomList;
         roomListInitializer.UpdateItems();
         foreach (var room in roomList)
             Debug.Log(room.Name);
