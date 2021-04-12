@@ -6,12 +6,4 @@ using UnityEngine.InputSystem;
 
 public class Character : MonoBehaviour
 {
-
-    private void Awake()
-    {
-        transform.position = spawnPoint.position;
-    }
-
-    public Transform spawnPoint;
-
 }

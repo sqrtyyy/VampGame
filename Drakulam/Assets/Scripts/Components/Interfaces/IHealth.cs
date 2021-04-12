@@ -6,7 +6,8 @@ using UnityEngine;
 [Serializable]
 public abstract class IHealth : MonoBehaviour
 {
-    [SerializeField] protected int health;
+     protected int health;
+    [SerializeField] protected int maxHealth = 0;
     public abstract void setHealth(int newHealth);
     public abstract void changeHealth(int delta);
 
