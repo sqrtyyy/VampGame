@@ -1,8 +1,9 @@
 ﻿using System.Collections;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SabotageBar : MonoBehaviour
+public class SabotageBar : MonoBehaviour, IPunObservable
 {
     public Image bar;
     private bool isInCycle = false;
@@ -12,7 +13,7 @@ public class SabotageBar : MonoBehaviour
         while (VampireTaskDisabler.getPercents() < 1)
         {
             
-            Debug.Log(VampireTaskDisabler.getPercents());
+            Debug.LogWarning(VampireTaskDisabler.getPercents());
             bar.fillAmount = VampireTaskDisabler.getPercents();
             yield return new WaitForSeconds(1);
         }
@@ -21,12 +22,16 @@ public class SabotageBar : MonoBehaviour
         isInCycle = false;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (!isInCycle)
         {
             StartCoroutine(checkTime());
         }
     }
-    
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        throw new System.NotImplementedException();
+    }
 }
