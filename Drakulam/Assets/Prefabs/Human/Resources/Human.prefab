@@ -209,7 +209,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5214430f3e70da84b89dd40df904e8e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 0}
 --- !u!114 &531184552536714238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,7 +270,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7d3fc39d75454d448f0861ab1e061c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 120
+  maxHealth: 100
+  bloodSpotPrefab: {fileID: 3008776863013448979, guid: 15aacfd3054c9eb4a834d33e78a32b71,
+    type: 3}
 --- !u!114 &7243357707775072921
 MonoBehaviour:
   m_ObjectHideFlags: 0
