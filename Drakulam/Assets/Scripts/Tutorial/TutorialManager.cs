@@ -32,8 +32,6 @@ public class TutorialManager : MonoBehaviour
     private const int TutorialVSabotage = 8;
     private const int TutorialVSabotageTimer = 9;
     private const int TutorialVMap = 10;
-    private const int TutorialVAttack = 11;
-
 
     private void CompleteStep()
     {
@@ -78,6 +76,11 @@ public class TutorialManager : MonoBehaviour
         SceneManager.LoadScene("menu");
     }
 
+    public void Exit()
+    {
+        EndVampireTutorial();
+    }
+
     private void HumanDeathStep()
     {
         _vampirePose.position = _humanPose.position - new Vector3(0, 1, 0);
@@ -117,11 +120,6 @@ public class TutorialManager : MonoBehaviour
         // vampire
         else if (popUpIndex == TutorialVSabotage && !task.IsCompleted())
             CompleteStep();
-        else if (popUpIndex == TutorialVAttack && _humanHealth.getHealth() == 0)
-        {
-            EndVampireTutorial();
-            popUps[popUpIndex].SetActive(false);
-        }
     }
     
     public void AttackTrigger()
@@ -142,9 +140,13 @@ public class TutorialManager : MonoBehaviour
             popUpIndex == TutorialHTimer || 
             popUpIndex == TutorialHHealth ||
             popUpIndex == TutorialVSabotageTimer ||
-            popUpIndex == TutorialVTaskList||
-            popUpIndex == TutorialVMap)
+            popUpIndex == TutorialVTaskList)
             CompleteStep();
+        else if (popUpIndex == TutorialVMap)
+        {
+            popUps[popUpIndex].SetActive(false);
+            EndVampireTutorial();
+        }
     }
 
     public void MoveTrigger()
