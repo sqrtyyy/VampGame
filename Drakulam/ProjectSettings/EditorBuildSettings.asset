@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameTutorial.unity
     guid: 6ae9e8b05bb7edb4c938b331be45d2d7
+  - enabled: 1
+    path: Assets/Scenes/WinLoseScenes/HumanWin.unity
+    guid: 7a2ff4adc4d99fc439cfe99a2afdb7d4
+  - enabled: 1
+    path: Assets/Scenes/WinLoseScenes/VampireWin.unity
+    guid: c8cc4d9ccae34c94b80b308200b4cb25
   m_configObjects: {}
