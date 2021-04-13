@@ -6,7 +6,8 @@ using Photon.Pun;
 
 public class CharacterControl : IControllable
 {
-    
+    public bool isMuvable = true;
+
     private CharacterInput controller;
     private Rigidbody2D body2D;
     
@@ -53,7 +54,7 @@ public class CharacterControl : IControllable
         {
             if (photonView.IsMine)
             {
-                GetComponent<ICharacterInterface>().taskList.active = !GetComponent<ICharacterInterface>().taskList.active;
+                //GetComponent<ICharacterInterface>().taskList.active = !GetComponent<ICharacterInterface>().taskList.active;
 
             }
         };
@@ -107,6 +108,8 @@ public class CharacterControl : IControllable
     
     protected void Update()
     {
+        if (!isMuvable)
+            return;
         if (!photonView.IsMine)
             return;
         Move( controller.Player.Move.ReadValue<Vector2>());

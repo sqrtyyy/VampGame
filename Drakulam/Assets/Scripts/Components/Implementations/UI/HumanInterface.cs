@@ -1,21 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 using UnityEngine.UI;
-using System.Collections;
 using System;
+using Photon.Pun;
+using UnityEngine;
 
 public class HumanInterface : ICharacterInterface
 {
+    private PhotonView photonView;
     void Start()
     {
-        UpdateTaskList();
-
+        photonView = PhotonView.Get(this);
+        AsyncUpdateTaskList();
     }
 
     public override void UpdateTaskList()
     {
-        Text taskListText = taskList.transform.Find("Viewport/Content/Text").GetComponent<Text>();
+        AsyncUpdateTaskList();
+        photonView.RPC("AsyncUpdateTaskList", RpcTarget.Others);
+    }
+
+    [PunRPC]
+    private void AsyncUpdateTaskList()
+    {
+        Text taskListText = taskList.Find("Viewport/Content/Text").GetComponent<Text>();
 
         Dictionary<string, Tuple<int, int>> allTasks = TaskManager.Instance().getAllTasks();
         taskListText.text = " Нужно: \n";
@@ -30,18 +37,33 @@ public class HumanInterface : ICharacterInterface
 
     public override void SetMaxHealth(int healthPoints)
     {
+        if (healthBar == null)
+            return;
         healthBar.maxValue = healthPoints;
         healthBar.value = healthPoints;
     }
 
     public override void UpdateHealthBar(int healthPoints)
     {
+        if (healthBar == null)
+            return;
         healthBar.value = healthPoints;
     }
 
     public override void UpdateTimer(int minutes, int seconds)
     {
+        if (timerText == null)
+            return;
         string gameTimerString = string.Format("{0:0}:{1:00}", minutes, seconds);
         timerText.text = gameTimerString;
+    }
+
+    public override void SetUI(string uiName)
+    {
+        /*if (!photonView.IsMine)
+            return;*/
+        healthBar = Camera.main.transform.Find(uiName).Find("HealthBar").GetComponent<Slider>();
+        taskList = Camera.main.transform.Find(uiName).Find("TaskList");
+        timerText = Camera.main.transform.Find(uiName).Find("Timer").GetComponent<Text>();
     }
 }
