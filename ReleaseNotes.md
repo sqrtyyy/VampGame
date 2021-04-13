@@ -1,5 +1,20 @@
 # Release Notes 
 
+# Version 4.0
+
+## What's new
+ * Task sabotage mechanics
+ * Vampire's minimap
+ * Rebirth mechanics
+ * Endgame window
+ * Blood trail feature
+
+## What's improved
+ * Character interaction
+ * Fix bugs with multiplayer synchronization
+ * Fix bugs in UI
+ * All rooms decorated
+
 # Version 3.0
 
 ## What's new
