@@ -49,7 +49,6 @@ public class CharacterControl : IControllable
                 GetComponent<ITaskCompleter>().FindTask();
         };
 
-        //WATCH OUT
         controller.Player.ShowTasks.performed += ctx =>
         {
             if (photonView.IsMine)
@@ -105,15 +104,25 @@ public class CharacterControl : IControllable
     {
         controller.Disable();
     }
-    
-    protected void Update()
+
+    protected void FixedUpdate()
     {
         if (!isMuvable)
             return;
         if (!photonView.IsMine)
             return;
-        Move( controller.Player.Move.ReadValue<Vector2>());
+        Move(controller.Player.Move.ReadValue<Vector2>());
         MoveCamera();
+    }
+    
+    protected void Update()
+    {
+        /*if (!isMuvable)
+            return;
+        if (!photonView.IsMine)
+            return;
+        Move( controller.Player.Move.ReadValue<Vector2>());
+        MoveCamera();*/
     }
     
     private void Flip()
