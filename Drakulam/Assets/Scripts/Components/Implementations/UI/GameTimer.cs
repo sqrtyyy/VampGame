@@ -13,7 +13,7 @@ public class GameTimer : MonoBehaviour
 
     void Update()
     {
-        float elapsedTime = Time.time - startTime;
+        /*float elapsedTime = Time.time - startTime;
 
         int minutes = (int)gameTime;
         int seconds = (int)((gameTime - elapsedTime) % 60);
@@ -23,7 +23,7 @@ public class GameTimer : MonoBehaviour
         if (elapsedTime >= gameTime)
         {
             GetComponent<ICharacterInterface>().UpdateTimer(0, 0);
-        }
+        }*/
     }
 
     public float gameTime;
