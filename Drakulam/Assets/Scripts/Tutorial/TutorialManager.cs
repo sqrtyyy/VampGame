@@ -48,7 +48,7 @@ public class TutorialManager : MonoBehaviour
         human.GetComponent<ICharacterInterface>().SetUI(_UI.name);
 
         human.GetComponent<CharacterControl>().isMuvable = true;
-        vampire.GetComponent<CharacterControl>().isMuvable = true;
+        //vampire.GetComponent<CharacterControl>().isMuvable = true;
 
         human.GetComponent<Transform>().position = new Vector3(-94.22f, 26.3f, 0);
         vampire.GetComponent<Transform>().position = new Vector3(-107.46f, -2.42f, -3.29f);
@@ -70,15 +70,19 @@ public class TutorialManager : MonoBehaviour
     
     private void InitializeVampireTutorial()
     {
+        _UI.gameObject.SetActive(false);
+        // Destroy(_UI);
         _UI = Instantiate<Transform>(_vampUI);
         _UI.SetParent(Camera.main.transform);
         vampire.GetComponent<ICharacterInterface>().SetUI(_UI.name);
         vampire.GetComponent<Transform>().position = new Vector3(-94.22f, 26.3f, 0);
 
-        if (human != null)
+        vampire.GetComponent<CharacterControl>().isMuvable = true;
+
+        /*if (human != null)
         {
             human.GetComponent<CharacterControl>().gameObject.SetActive(false);
-        }
+        }*/
         vampire.GetComponent<CharacterControl>().gameObject.SetActive(true);
         Debug.Log("InitializeVampireTutorial ended");
     }
