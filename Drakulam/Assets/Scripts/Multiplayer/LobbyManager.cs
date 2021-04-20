@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
-    private byte countPlayers = 2;
+    private byte countPlayers = 4;
     public List<RoomInfo> roomList;
     public RoomListInitializer roomListInitializer;
     //public RoomListInitializer roomListInitializer;
