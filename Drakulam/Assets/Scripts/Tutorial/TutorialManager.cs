@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Utils;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -60,6 +61,7 @@ public class TutorialManager : MonoBehaviour
         popUps[0].SetActive(true);
         _humanHealth.setHealth(10);
         _vampireHealth.setHealth(500);
+        task.SetPlayerInfo(new PlayerInfo(PlayerInfo.CharacterClass.Human));
     }
     
     private void EndHumanTutorial()
@@ -84,6 +86,7 @@ public class TutorialManager : MonoBehaviour
             human.GetComponent<CharacterControl>().gameObject.SetActive(false);
         }*/
         vampire.GetComponent<CharacterControl>().gameObject.SetActive(true);
+        task.SetPlayerInfo(new PlayerInfo(PlayerInfo.CharacterClass.Vampire));
         Debug.Log("InitializeVampireTutorial ended");
     }
     
