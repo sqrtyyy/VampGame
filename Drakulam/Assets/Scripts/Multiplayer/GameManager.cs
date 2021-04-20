@@ -128,7 +128,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         if (_timeStart == 0)
             return;
-        if (_timePeriod - (PhotonNetwork.Time - _timeStart) < 0 ||
+        if (/*_timePeriod - (PhotonNetwork.Time - _timeStart) < 0 ||*/
             _nVampires == PhotonNetwork.CurrentRoom.MaxPlayers)
             SceneManager.LoadScene(4);
     }
