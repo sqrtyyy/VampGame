@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
 using UnityEngine.UI;
+using Utils;
 using Random = System.Random;
 
 public class TaskDestroyedWall : ITask
@@ -70,6 +71,10 @@ public class TaskDestroyedWall : ITask
     public override string GetTaskName()
     {
         return "Почините разрушенную стену.";
+    }
+
+    public override void SetPlayerInfo(PlayerInfo playerInfo)
+    {
     }
 
     public void CloseGame()

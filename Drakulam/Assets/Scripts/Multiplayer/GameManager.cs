@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Utils;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
@@ -48,6 +49,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         player.GetComponent<CharacterControl>().isMuvable = false;
         player.GetComponent<ICharacterInterface>().SetUI(_UI.name);
         uiName = _UI.name;
+        TaskManager.Instance().TasksSetPlayerInfo(new PlayerInfo(PlayerInfo.CharacterClass.Human));
     }
 
     private void SpawnVampire()
@@ -59,6 +61,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         player.GetComponent<CharacterControl>().isMuvable = false;
         player.GetComponent<ICharacterInterface>().SetUI(_UI.name);
         uiName = _UI.name;
+        TaskManager.Instance().TasksSetPlayerInfo(new PlayerInfo(PlayerInfo.CharacterClass.Vampire));
     }
 
     // Update is called once per frame
@@ -85,6 +88,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             _UI = Instantiate<Transform>(_vampUI);
             _UI.SetParent(Camera.main.transform);
             player.GetComponent<ICharacterInterface>().SetUI(_UI.name);
+            TaskManager.Instance().TasksSetPlayerInfo(new PlayerInfo(PlayerInfo.CharacterClass.Vampire));
         }
         //________________________________________
         //
