@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utils;
 
 public abstract class ITask : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public abstract class ITask : MonoBehaviour
     public abstract void SabotageTask();
 
     public abstract string GetTaskName();
+
+    public abstract void SetPlayerInfo(PlayerInfo playerInfo);
 
     //-------------------------------------//
 
