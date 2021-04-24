@@ -25,10 +25,6 @@ public class CharacterControl : IControllable
     private void Awake()
     {
         controller = new CharacterInput();
-        controller.Player.Die.performed += ctx => { 
-            if (photonView.IsMine)
-                anim.SetTrigger("death"); 
-            };
         controller.Player.Atack.performed += ctx =>
         {
             if (photonView.IsMine)
