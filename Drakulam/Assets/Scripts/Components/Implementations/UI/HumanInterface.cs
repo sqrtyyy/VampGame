@@ -65,5 +65,6 @@ public class HumanInterface : ICharacterInterface
         healthBar = Camera.main.transform.Find(uiName).Find("HealthBar").GetComponent<Slider>();
         taskList = Camera.main.transform.Find(uiName).Find("TaskList");
         timerText = Camera.main.transform.Find(uiName).Find("Timer").GetComponent<Text>();
+        AsyncUpdateTaskList();
     }
 }
