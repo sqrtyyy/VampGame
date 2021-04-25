@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Utils;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
@@ -21,10 +22,14 @@ public class GameManager : MonoBehaviourPunCallbacks
     string namePlayerPrefub;
     private string uiName;
     Transform _UI;
+    private double _timeStart;
+    private double _timePeriod = 10;
+    
 
     // Start is called before the first frame update
     void Start()
     {        
+        _timeStart = 0;
         if (PhotonNetwork.CurrentRoom.PlayerCount < PhotonNetwork.CurrentRoom.MaxPlayers)
             SpawnHuman();
         else
@@ -44,6 +49,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         player.GetComponent<CharacterControl>().isMuvable = false;
         player.GetComponent<ICharacterInterface>().SetUI(_UI.name);
         uiName = _UI.name;
+        TaskManager.Instance().TasksSetPlayerInfo(new PlayerInfo(PlayerInfo.CharacterClass.Human));
     }
 
     private void SpawnVampire()
@@ -55,6 +61,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         player.GetComponent<CharacterControl>().isMuvable = false;
         player.GetComponent<ICharacterInterface>().SetUI(_UI.name);
         uiName = _UI.name;
+        TaskManager.Instance().TasksSetPlayerInfo(new PlayerInfo(PlayerInfo.CharacterClass.Vampire));
     }
 
     // Update is called once per frame
@@ -81,9 +88,11 @@ public class GameManager : MonoBehaviourPunCallbacks
             _UI = Instantiate<Transform>(_vampUI);
             _UI.SetParent(Camera.main.transform);
             player.GetComponent<ICharacterInterface>().SetUI(_UI.name);
+            TaskManager.Instance().TasksSetPlayerInfo(new PlayerInfo(PlayerInfo.CharacterClass.Vampire));
         }
         //________________________________________
         //
+        UpdateTimer();
         CheckHumanWin();
         CheckVampWin();
     }
@@ -108,6 +117,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     void CheckHumanWin()
     {
+        if (_timeStart == 0)
+            return;
         if (!TaskManager.Instance().IsAllTasksCompleted())
             return;
         SceneManager.LoadScene(3);
@@ -115,9 +126,24 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     void CheckVampWin()
     {
-        if (_nVampires != PhotonNetwork.CurrentRoom.MaxPlayers)
+        if (_timeStart == 0)
             return;
-        SceneManager.LoadScene(4);
+        if (/*_timePeriod - (PhotonNetwork.Time - _timeStart) < 0 ||*/
+            _nVampires == PhotonNetwork.CurrentRoom.MaxPlayers)
+            SceneManager.LoadScene(4);
+    }
+
+    private void UpdateTimer()
+    {
+        int delteTime = (int)(_timePeriod - (PhotonNetwork.Time - _timeStart));
+        if (_timeStart == 0 && delteTime < 0)
+        {
+            _UI.GetComponent<TimerUpdate>().UpdateTimer((int)_timePeriod / 60, (int)_timePeriod % 60);
+            return;
+        }
+        int minutes = delteTime / 60;
+        int seconds = delteTime % 60;
+        _UI.GetComponent<TimerUpdate>().UpdateTimer(minutes, seconds);
     }
 
     [PunRPC]
@@ -129,6 +155,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     private void StartGame()
     {
+        _timeStart = PhotonNetwork.Time;
         player.GetComponent<CharacterControl>().isMuvable = true;
     }
 }

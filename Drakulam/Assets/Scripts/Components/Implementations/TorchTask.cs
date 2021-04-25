@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using ExitGames.Client.Photon.StructWrapping;
+using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 using Photon.Pun;
+using Utils;
 
 public class TorchTask : ITask
 {
@@ -13,6 +15,16 @@ public class TorchTask : ITask
 
         anim = GetComponent<Animator>();
         ChangeStatus();
+        
+        var exclamationMarkName = "ExclamationMark";
+        _exclamationMark = Functions.GetScriptOnChild<ExclamationMark>(this, exclamationMarkName);
+        if (_exclamationMark == null)
+        {
+            Debug.Log("EXMARK exclamation mark script is null");
+            return;
+        }
+            
+        _exclamationMark.canBeSabotaged = true;
     }
 
     public override void StartTask()
@@ -28,6 +40,7 @@ public class TorchTask : ITask
         {
             isOn = true;
             ChangeStatus();
+            _exclamationMark.ChangeStatus();
         }
     }
 
@@ -44,6 +57,7 @@ public class TorchTask : ITask
         {
             isOn = false;
             ChangeStatus();
+            _exclamationMark.ChangeStatus();
         }
     }
 
@@ -59,6 +73,12 @@ public class TorchTask : ITask
         return isOn;
     }
 
+    public override void SetPlayerInfo(PlayerInfo playerInfo)
+    {
+        if (_exclamationMark != null)
+            _exclamationMark.SetPlayerClass(playerInfo.characterClass);
+    }
+
 
     private void ChangeStatus()
     {
@@ -71,11 +91,15 @@ public class TorchTask : ITask
     {
         foreach (Transform child in transform)
         {
-            child.gameObject.GetComponent<Light2D>().enabled = status;
+            var component = child.gameObject.GetComponent<Light2D>();
+            if (component != null)
+                component.enabled = status;
         }
     }
+
 
     public bool isOn;
 
     private Animator anim;
+    private ExclamationMark _exclamationMark;
 }
