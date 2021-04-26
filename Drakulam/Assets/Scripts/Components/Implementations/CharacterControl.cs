@@ -153,9 +153,9 @@ public class CharacterControl : IControllable
         Vector3 newPos = prevPos;
         newPos.x = body2D.position.x;
         newPos.y = body2D.position.y + offsetY;
-
-        Vector3 velocity = (newPos - prevPos) * Time.fixedDeltaTime;
-        Camera.main.transform.position = Vector3.SmoothDamp(prevPos, newPos, ref velocity, 0.08f);
+        Camera.main.transform.position = newPos;
+        //Vector3 velocity = (newPos - prevPos) * Time.fixedDeltaTime;
+        //Camera.main.transform.position = Vector3.SmoothDamp(prevPos, newPos, ref velocity, 0.08f);
     }
     
     protected void Start()

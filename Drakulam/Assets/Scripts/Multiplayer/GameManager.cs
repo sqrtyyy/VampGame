@@ -39,15 +39,15 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             Spawn(_humanPrefab, _humanUI, _humanSpawn);
             TaskManager.Instance().TasksSetPlayerInfo(new PlayerInfo(PlayerInfo.CharacterClass.Human));
-            CharacterHumanLiteStatus(true);
-            CharacterVampireLiteStatus(false);
+            CharacterHumanLightStatus(true);
+            CharacterVampireLightStatus(false);
         }
         else
         {
             Spawn(_vampPrefub, _vampUI, _vampireSpawn);
             TaskManager.Instance().TasksSetPlayerInfo(new PlayerInfo(PlayerInfo.CharacterClass.Vampire));
-            CharacterVampireLiteStatus(true);
-            CharacterHumanLiteStatus(false);
+            CharacterVampireLightStatus(true);
+            CharacterHumanLightStatus(false);
         }
 
         if (PhotonNetwork.CurrentRoom.PlayerCount == PhotonNetwork.CurrentRoom.MaxPlayers)
@@ -78,8 +78,8 @@ public class GameManager : MonoBehaviourPunCallbacks
          */
         if (player == null) //
         {
-            CharacterHumanLiteStatus(false);
-            CharacterVampireLiteStatus(true);
+            CharacterHumanLightStatus(false);
+            CharacterVampireLightStatus(true);
             if (namePlayerPrefub == _humanPrefab.name)
             {
                 IncNumVamp();
@@ -170,13 +170,13 @@ public class GameManager : MonoBehaviourPunCallbacks
             Debug.LogError("it is impossible to update the task list");
     }
 
-    void CharacterHumanLiteStatus(bool isOn)
+    void CharacterHumanLightStatus(bool isOn)
     {
         Camera.main.transform.Find("HumanLight").gameObject.SetActive(isOn);
         Camera.main.transform.Find("HumanLight_NoNM").gameObject.SetActive(isOn);
     }
 
-    void CharacterVampireLiteStatus(bool isOn)
+    void CharacterVampireLightStatus(bool isOn)
     {
         Camera.main.transform.Find("VampireLight").gameObject.SetActive(isOn);
         Camera.main.transform.Find("VampireLight_NoNM").gameObject.SetActive(isOn);

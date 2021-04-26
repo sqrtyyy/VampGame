@@ -72,6 +72,7 @@ public class TutorialManager : MonoBehaviour
     
     private void InitializeVampireTutorial()
     {
+        ChangeLight();
         _UI.gameObject.SetActive(false);
         // Destroy(_UI);
         _UI = Instantiate<Transform>(_vampUI);
@@ -178,4 +179,11 @@ public class TutorialManager : MonoBehaviour
             CompleteStep();
     }
     
+    void ChangeLight()
+    {
+        Camera.main.transform.Find("HumanLight").gameObject.SetActive(false);
+        Camera.main.transform.Find("HumanLight_NoNM").gameObject.SetActive(false);
+        Camera.main.transform.Find("VampireLight").gameObject.SetActive(true);
+        Camera.main.transform.Find("VampireLight_NoNM").gameObject.SetActive(true);
+    }
 }
