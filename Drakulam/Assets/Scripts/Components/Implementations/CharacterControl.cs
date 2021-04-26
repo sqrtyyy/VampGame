@@ -149,10 +149,13 @@ public class CharacterControl : IControllable
         // offset of the camera by y-axis needed to center camera by human's sprite
         float offsetY = 1.0f;
 
-        Vector3 newPos = Camera.main.transform.position;
+        Vector3 prevPos = Camera.main.transform.position;
+        Vector3 newPos = prevPos;
         newPos.x = body2D.position.x;
         newPos.y = body2D.position.y + offsetY;
-        Camera.main.transform.position = newPos;
+
+        Vector3 velocity = (newPos - prevPos) * Time.fixedDeltaTime;
+        Camera.main.transform.position = Vector3.SmoothDamp(prevPos, newPos, ref velocity, 0.08f);
     }
     
     protected void Start()

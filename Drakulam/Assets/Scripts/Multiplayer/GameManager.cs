@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public Transform _humanUI;
     public Transform _vampUI;
 
+    public AudioSource beginningMusic;
     static private GameObject player;
     int _nVampires = 1;
     string namePlayerPrefub;
@@ -38,11 +39,15 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             Spawn(_humanPrefab, _humanUI, _humanSpawn);
             TaskManager.Instance().TasksSetPlayerInfo(new PlayerInfo(PlayerInfo.CharacterClass.Human));
+            CharacterHumanLiteStatus(true);
+            CharacterVampireLiteStatus(false);
         }
         else
         {
             Spawn(_vampPrefub, _vampUI, _vampireSpawn);
             TaskManager.Instance().TasksSetPlayerInfo(new PlayerInfo(PlayerInfo.CharacterClass.Vampire));
+            CharacterVampireLiteStatus(true);
+            CharacterHumanLiteStatus(false);
         }
 
         if (PhotonNetwork.CurrentRoom.PlayerCount == PhotonNetwork.CurrentRoom.MaxPlayers)
@@ -73,7 +78,8 @@ public class GameManager : MonoBehaviourPunCallbacks
          */
         if (player == null) //
         {
-            
+            CharacterHumanLiteStatus(false);
+            CharacterVampireLiteStatus(true);
             if (namePlayerPrefub == _humanPrefab.name)
             {
                 IncNumVamp();
@@ -147,11 +153,11 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    private void StartGame()
-    {
+    private void StartGame() {
         _started = true;
         _timeStart = PhotonNetwork.Time;
         player.GetComponent<CharacterControl>().isMuvable = true;
+        beginningMusic.Play();
     }
 
     public static void UpdateTaskList()
@@ -162,5 +168,17 @@ public class GameManager : MonoBehaviourPunCallbacks
             uiController.UpdateTaskList();
         else
             Debug.LogError("it is impossible to update the task list");
+    }
+
+    void CharacterHumanLiteStatus(bool isOn)
+    {
+        Camera.main.transform.Find("HumanLight").gameObject.SetActive(isOn);
+        Camera.main.transform.Find("HumanLight_NoNM").gameObject.SetActive(isOn);
+    }
+
+    void CharacterVampireLiteStatus(bool isOn)
+    {
+        Camera.main.transform.Find("VampireLight").gameObject.SetActive(isOn);
+        Camera.main.transform.Find("VampireLight_NoNM").gameObject.SetActive(isOn);
     }
 }
