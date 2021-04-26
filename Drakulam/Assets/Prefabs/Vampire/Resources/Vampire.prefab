@@ -707,7 +707,7 @@ MonoBehaviour:
     m_Bits: 512
   attackRadius: 1.2
   damage: 15
-  anim: {fileID: 0}
+  anim: {fileID: 4508945831261510681}
 --- !u!114 &7080673359195429160
 MonoBehaviour:
   m_ObjectHideFlags: 0

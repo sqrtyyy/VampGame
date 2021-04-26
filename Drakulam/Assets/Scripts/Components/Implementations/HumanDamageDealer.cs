@@ -21,7 +21,7 @@ public class HumanDamageDealer : IDamageDealer
     
     protected void Start()
     {
-        anim = GetComponent<Animator>();
+        // anim = GetComponent<Animator>();
     }
 
     public override void Attack ()
