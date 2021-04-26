@@ -12,7 +12,7 @@ public abstract class ICharacterInterface : MonoBehaviour
 
     public abstract void UpdateTimer(int minutes, int seconds);
 
-    public UnityEngine.UI.Slider healthBar;
+    public Slider healthBar;
 
     public static Transform taskList;
 
