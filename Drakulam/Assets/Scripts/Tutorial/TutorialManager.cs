@@ -11,7 +11,6 @@ public class TutorialManager : MonoBehaviour
     public GameObject human;
     public GameObject vampire;
     public ITask task;
-    public GameObject invisibleWall;
     public Transform _humanUI;
     public Transform _vampUI;
     private Transform _UI;
@@ -34,6 +33,9 @@ public class TutorialManager : MonoBehaviour
     private const int TutorialVSabotage = 8;
     private const int TutorialVSabotageTimer = 9;
     private const int TutorialVMap = 10;
+    private const int TutorialEnding = 11;
+
+    private Vector3 lastHumanPos;
 
     private void CompleteStep()
     {
@@ -52,14 +54,13 @@ public class TutorialManager : MonoBehaviour
         //vampire.GetComponent<CharacterControl>().isMuvable = true;
 
         human.GetComponent<Transform>().position = new Vector3(-94.22f, 26.3f, 0);
-        vampire.GetComponent<Transform>().position = new Vector3(-107.46f, -2.42f, -3.29f);
+        vampire.GetComponent<Transform>().position = new Vector3(-1000.46f, -500.42f, 0f);
 
-        invisibleWall.SetActive(true);
         human.GetComponent<CharacterControl>().gameObject.SetActive(true);
         vampire.GetComponent<CharacterControl>().gameObject.SetActive(false);
 
         popUps[0].SetActive(true);
-        _humanHealth.setHealth(10);
+        
         _vampireHealth.setHealth(500);
         task.SetPlayerInfo(new PlayerInfo(PlayerInfo.CharacterClass.Human));
     }
@@ -74,21 +75,15 @@ public class TutorialManager : MonoBehaviour
     {
         ChangeLight();
         _UI.gameObject.SetActive(false);
-        // Destroy(_UI);
         _UI = Instantiate<Transform>(_vampUI);
         _UI.SetParent(Camera.main.transform);
         vampire.GetComponent<ICharacterInterface>().SetUI(_UI.name);
-        vampire.GetComponent<Transform>().position = new Vector3(-94.22f, 26.3f, 0);
+        vampire.GetComponent<Transform>().position = lastHumanPos;//_humanPose.position;
 
         vampire.GetComponent<CharacterControl>().isMuvable = true;
 
-        /*if (human != null)
-        {
-            human.GetComponent<CharacterControl>().gameObject.SetActive(false);
-        }*/
         vampire.GetComponent<CharacterControl>().gameObject.SetActive(true);
         task.SetPlayerInfo(new PlayerInfo(PlayerInfo.CharacterClass.Vampire));
-        Debug.Log("InitializeVampireTutorial ended");
     }
     
     private void EndVampireTutorial()
@@ -104,6 +99,7 @@ public class TutorialManager : MonoBehaviour
     private void HumanDeathStep()
     {
         _vampirePose.position = _humanPose.position - new Vector3(0, 1, 0);
+        lastHumanPos = human.GetComponent<Transform>().position;
         vampire.GetComponent<IDamageDealer>().Attack();
     }
 
@@ -127,7 +123,7 @@ public class TutorialManager : MonoBehaviour
         {
             if (human == null || _humanHealth.getHealth() == 0)
             {
-                EndHumanTutorial();
+                //EndHumanTutorial();
                 InitializeVampireTutorial();
                 CompleteStep();
             }
@@ -151,7 +147,6 @@ public class TutorialManager : MonoBehaviour
         if (popUpIndex == TutorialHAttack)
         {
             CompleteStep();
-            invisibleWall.SetActive(false);
             vampire.SetActive(true);
         }
     }
@@ -163,9 +158,10 @@ public class TutorialManager : MonoBehaviour
             popUpIndex == TutorialHTimer || 
             popUpIndex == TutorialHHealth ||
             popUpIndex == TutorialVSabotageTimer ||
-            popUpIndex == TutorialVTaskList)
+            popUpIndex == TutorialVTaskList || 
+            popUpIndex == TutorialVMap)
             CompleteStep();
-        else if (popUpIndex == TutorialVMap)
+        else if (popUpIndex == TutorialEnding)
         {
             popUps[popUpIndex].SetActive(false);
             EndVampireTutorial();

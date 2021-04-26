@@ -10,13 +10,15 @@ public class HumanInterface : ICharacterInterface
     void Start()
     {
         photonView = PhotonView.Get(this);
-        AsyncUpdateTaskList();
     }
 
     public override void UpdateTaskList()
     {
         AsyncUpdateTaskList();
-        photonView.RPC("AsyncUpdateTaskList", RpcTarget.Others);
+        if (PhotonNetwork.IsConnectedAndReady && PhotonNetwork.CurrentRoom != null)
+        {
+            photonView.RPC("AsyncUpdateTaskList", RpcTarget.Others);
+        }
     }
 
     [PunRPC]

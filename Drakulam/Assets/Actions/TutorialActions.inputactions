@@ -41,17 +41,6 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "6ce61a49-ffb4-4f1b-a1c2-ded21c98cc77",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "next",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "14436de0-e953-467e-ba6d-7c47bfb344e6",
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
@@ -184,23 +173,34 @@
                 },
                 {
                     "name": "",
-                    "id": "b6d3c1b9-8831-4227-bb0a-e737e600c11f",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "atack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "34ccd52e-8f02-4335-87ec-9e0869d4b53f",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "task",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "56c5757d-e45f-479c-bc43-8c7d94e0282d",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "next",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4b62ae12-9760-4796-aaef-1db6a18722bb",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "atack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
