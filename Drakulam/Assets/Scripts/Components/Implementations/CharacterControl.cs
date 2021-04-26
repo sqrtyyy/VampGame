@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Photon.Pun;
 
@@ -37,6 +38,13 @@ public class CharacterControl : IControllable
                 {
                     Debug.Log("Object doesn't have component \"IDamageDealer\"");
                 }
+            }
+        };
+        controller.Player.Exit.performed += ctx =>
+        {
+            if (photonView.IsMine)
+            {
+                SceneManager.LoadScene("menu");
             }
         };
         controller.Player.Hurt.performed += ctx =>
