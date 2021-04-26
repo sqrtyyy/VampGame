@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Photon.Pun;
 
@@ -25,10 +26,6 @@ public class CharacterControl : IControllable
     private void Awake()
     {
         controller = new CharacterInput();
-        controller.Player.Die.performed += ctx => { 
-            if (photonView.IsMine)
-                anim.SetTrigger("death"); 
-            };
         controller.Player.Atack.performed += ctx =>
         {
             if (photonView.IsMine)
@@ -41,6 +38,13 @@ public class CharacterControl : IControllable
                 {
                     Debug.Log("Object doesn't have component \"IDamageDealer\"");
                 }
+            }
+        };
+        controller.Player.Exit.performed += ctx =>
+        {
+            if (photonView.IsMine)
+            {
+                SceneManager.LoadScene("menu");
             }
         };
         controller.Player.Hurt.performed += ctx =>
@@ -82,6 +86,9 @@ public class CharacterControl : IControllable
                 // Reset timer
                 delayToIdle = 0.05f;
                 anim.SetInteger("animState", 1);
+                
+                //added this part of code because step sound worked here
+                GetComponent<ISoundable>().playSound(ISoundable.SoundName.STEP_SOUND);
             }
             else
             {

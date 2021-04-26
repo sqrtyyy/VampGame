@@ -49,9 +49,9 @@ public class RoomListInitializer : MonoBehaviour
     void GetItems (System.Action<TestItemsModel[]> callBack)
     {
         
-        var result = new TestItemsModel[lobbyManager.roomList.Count];
+        var result = new TestItemsModel[lobbyManager.roomDict.Count];
         int i = 0;
-        foreach (var item in lobbyManager.roomList)
+        foreach (var item in lobbyManager.roomDict.Values)
         {
             result[i] = new TestItemsModel();
             result[i].title = item.Name;
@@ -62,7 +62,7 @@ public class RoomListInitializer : MonoBehaviour
             }
             else
             {
-                result[i].buttonText = "Закрато";
+                result[i].buttonText = "Закрыто";
                 result[i].isOpen = false;
             }
             i++;

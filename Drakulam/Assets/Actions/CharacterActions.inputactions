@@ -38,14 +38,6 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Die",
-                    "type": "Button",
-                    "id": "22e5a617-9b61-42f8-b66d-d016b36866ac",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "Hurt",
                     "type": "Button",
                     "id": "3e39f74c-4836-4c04-adb6-fe1da826d7d2",
@@ -57,6 +49,14 @@
                     "name": "ShowTasks",
                     "type": "Button",
                     "id": "7ea90d9f-3c4a-4868-8a42-1397fc30be84",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Exit",
+                    "type": "Button",
+                    "id": "50b9f6b9-f369-4927-a5cd-3fe5f1a5f9a4",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -296,12 +296,12 @@
                 },
                 {
                     "name": "",
-                    "id": "4d548051-6bea-44c9-a5c8-03778c859b42",
-                    "path": "<Keyboard>/q",
+                    "id": "76382a06-df92-444e-beab-5c1a2109ad7c",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Die",
+                    "action": "Atack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -324,6 +324,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ShowTasks",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "54a80f47-1cd0-4575-9b9e-95d0638ea39a",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Exit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
