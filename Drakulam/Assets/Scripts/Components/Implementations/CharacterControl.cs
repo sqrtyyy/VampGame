@@ -26,11 +26,6 @@ public class CharacterControl : IControllable
     private void Awake()
     {
         controller = new CharacterInput();
-        controller.Player.Die.performed += ctx =>
-        {
-            if (photonView.IsMine)
-                anim.SetTrigger("death");
-        };
         controller.Player.Atack.performed += ctx =>
         {
             if (photonView.IsMine)
@@ -91,6 +86,9 @@ public class CharacterControl : IControllable
                 // Reset timer
                 delayToIdle = 0.05f;
                 anim.SetInteger("animState", 1);
+                
+                //added this part of code because step sound worked here
+                GetComponent<ISoundable>().playSound(ISoundable.SoundName.STEP_SOUND);
             }
             else
             {
