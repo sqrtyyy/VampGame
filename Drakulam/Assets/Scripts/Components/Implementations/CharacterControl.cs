@@ -28,7 +28,7 @@ public class CharacterControl : IControllable
         controller.Player.Die.performed += ctx => { 
             if (photonView.IsMine)
                 anim.SetTrigger("death"); 
-            };
+        };
         controller.Player.Atack.performed += ctx =>
         {
             if (photonView.IsMine)
