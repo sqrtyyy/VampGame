@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Photon.Pun;
 
@@ -25,10 +26,11 @@ public class CharacterControl : IControllable
     private void Awake()
     {
         controller = new CharacterInput();
-        controller.Player.Die.performed += ctx => { 
+        controller.Player.Die.performed += ctx =>
+        {
             if (photonView.IsMine)
-                anim.SetTrigger("death"); 
-            };
+                anim.SetTrigger("death");
+        };
         controller.Player.Atack.performed += ctx =>
         {
             if (photonView.IsMine)
@@ -41,6 +43,13 @@ public class CharacterControl : IControllable
                 {
                     Debug.Log("Object doesn't have component \"IDamageDealer\"");
                 }
+            }
+        };
+        controller.Player.Exit.performed += ctx =>
+        {
+            if (photonView.IsMine)
+            {
+                SceneManager.LoadScene("menu");
             }
         };
         controller.Player.Hurt.performed += ctx =>
