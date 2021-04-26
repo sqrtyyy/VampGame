@@ -22,7 +22,9 @@ public class GameManager : MonoBehaviourPunCallbacks
     Transform _UI;
 
     private double _timeStart;
+
     private double _timePeriod = 10 * 60;
+    private bool _started = false;
 
 
     private void Awake()
@@ -61,6 +63,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
+        if (_started && (PhotonNetwork.CurrentRoom.PlayerCount < 2 || _nVampires == 0))
+            SceneManager.LoadScene(3); // human win
         //________________________________________
         /*
          * This is the condition that the player is dead and must be respawned, 
@@ -145,6 +149,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     [PunRPC]
     private void StartGame()
     {
+        _started = true;
         _timeStart = PhotonNetwork.Time;
         player.GetComponent<CharacterControl>().isMuvable = true;
     }

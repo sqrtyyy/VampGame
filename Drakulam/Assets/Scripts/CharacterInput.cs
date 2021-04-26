@@ -51,14 +51,6 @@ public class @CharacterInput : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Die"",
-                    ""type"": ""Button"",
-                    ""id"": ""22e5a617-9b61-42f8-b66d-d016b36866ac"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
                     ""name"": ""Hurt"",
                     ""type"": ""Button"",
                     ""id"": ""3e39f74c-4836-4c04-adb6-fe1da826d7d2"",
@@ -70,6 +62,14 @@ public class @CharacterInput : IInputActionCollection, IDisposable
                     ""name"": ""ShowTasks"",
                     ""type"": ""Button"",
                     ""id"": ""7ea90d9f-3c4a-4868-8a42-1397fc30be84"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Exit"",
+                    ""type"": ""Button"",
+                    ""id"": ""50b9f6b9-f369-4927-a5cd-3fe5f1a5f9a4"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -309,12 +309,12 @@ public class @CharacterInput : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""4d548051-6bea-44c9-a5c8-03778c859b42"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""id"": ""76382a06-df92-444e-beab-5c1a2109ad7c"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Die"",
+                    ""action"": ""Atack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -337,6 +337,17 @@ public class @CharacterInput : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ShowTasks"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""54a80f47-1cd0-4575-9b9e-95d0638ea39a"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Exit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -918,9 +929,9 @@ public class @CharacterInput : IInputActionCollection, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Atack = m_Player.FindAction("Atack", throwIfNotFound: true);
-        m_Player_Die = m_Player.FindAction("Die", throwIfNotFound: true);
         m_Player_Hurt = m_Player.FindAction("Hurt", throwIfNotFound: true);
         m_Player_ShowTasks = m_Player.FindAction("ShowTasks", throwIfNotFound: true);
+        m_Player_Exit = m_Player.FindAction("Exit", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -986,9 +997,9 @@ public class @CharacterInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Atack;
-    private readonly InputAction m_Player_Die;
     private readonly InputAction m_Player_Hurt;
     private readonly InputAction m_Player_ShowTasks;
+    private readonly InputAction m_Player_Exit;
     public struct PlayerActions
     {
         private @CharacterInput m_Wrapper;
@@ -997,9 +1008,9 @@ public class @CharacterInput : IInputActionCollection, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Atack => m_Wrapper.m_Player_Atack;
-        public InputAction @Die => m_Wrapper.m_Player_Die;
         public InputAction @Hurt => m_Wrapper.m_Player_Hurt;
         public InputAction @ShowTasks => m_Wrapper.m_Player_ShowTasks;
+        public InputAction @Exit => m_Wrapper.m_Player_Exit;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1021,15 +1032,15 @@ public class @CharacterInput : IInputActionCollection, IDisposable
                 @Atack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAtack;
                 @Atack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAtack;
                 @Atack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAtack;
-                @Die.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDie;
-                @Die.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDie;
-                @Die.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDie;
                 @Hurt.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHurt;
                 @Hurt.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHurt;
                 @Hurt.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHurt;
                 @ShowTasks.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShowTasks;
                 @ShowTasks.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShowTasks;
                 @ShowTasks.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShowTasks;
+                @Exit.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnExit;
+                @Exit.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnExit;
+                @Exit.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnExit;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1046,15 +1057,15 @@ public class @CharacterInput : IInputActionCollection, IDisposable
                 @Atack.started += instance.OnAtack;
                 @Atack.performed += instance.OnAtack;
                 @Atack.canceled += instance.OnAtack;
-                @Die.started += instance.OnDie;
-                @Die.performed += instance.OnDie;
-                @Die.canceled += instance.OnDie;
                 @Hurt.started += instance.OnHurt;
                 @Hurt.performed += instance.OnHurt;
                 @Hurt.canceled += instance.OnHurt;
                 @ShowTasks.started += instance.OnShowTasks;
                 @ShowTasks.performed += instance.OnShowTasks;
                 @ShowTasks.canceled += instance.OnShowTasks;
+                @Exit.started += instance.OnExit;
+                @Exit.performed += instance.OnExit;
+                @Exit.canceled += instance.OnExit;
             }
         }
     }
@@ -1215,9 +1226,9 @@ public class @CharacterInput : IInputActionCollection, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnAtack(InputAction.CallbackContext context);
-        void OnDie(InputAction.CallbackContext context);
         void OnHurt(InputAction.CallbackContext context);
         void OnShowTasks(InputAction.CallbackContext context);
+        void OnExit(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
