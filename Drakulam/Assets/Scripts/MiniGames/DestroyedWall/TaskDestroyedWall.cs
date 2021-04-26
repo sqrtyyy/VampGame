@@ -11,7 +11,6 @@ public class TaskDestroyedWall : ITask
     private const int _randomBrickNum = 11;
     //private const int _choosableBricksNumber = 3;
     private int _answer = -1;
-    private ExclamationMark _exclamationMark;
 
     private Point[] _brickCenters = new Point[]
     {
@@ -31,15 +30,6 @@ public class TaskDestroyedWall : ITask
     {
         photonView = PhotonView.Get(this);
         AddTaskManager(TaskManager.Instance());
-        var exclamationMarkName = "ExclamationMark";
-        _exclamationMark = Functions.GetScriptOnChild<ExclamationMark>(this, exclamationMarkName);
-        if (_exclamationMark == null)
-        {
-            Debug.Log("EXMARK exclamation mark script is null");
-            return;
-        }
-            
-        _exclamationMark.canBeSabotaged = true;
     }
 
 
@@ -57,7 +47,6 @@ public class TaskDestroyedWall : ITask
     {
         _isCompleted = isCompleted;
         NotifyTaskManager(GetTaskName(), isCompleted);
-        _exclamationMark.ChangeStatus();
         /*if (isCompleted)
             _answer = -1;*/
     }
@@ -103,8 +92,6 @@ public class TaskDestroyedWall : ITask
 
     public override void SetPlayerInfo(PlayerInfo playerInfo)
     {
-        if (_exclamationMark != null)
-            _exclamationMark.SetPlayerClass(playerInfo.characterClass);
     }
 
     public void CloseGame()
