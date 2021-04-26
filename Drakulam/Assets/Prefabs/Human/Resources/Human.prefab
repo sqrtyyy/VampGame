@@ -58,7 +58,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3926621552751231990}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.203, y: 0.567, z: 0}
+  m_LocalPosition: {x: 0.158, y: 0.408, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4566793839813005087}
@@ -216,6 +216,7 @@ GameObject:
   - component: {fileID: 8795615657678498534}
   - component: {fileID: 4295465604055637986}
   - component: {fileID: 4221582862809108144}
+  - component: {fileID: 2859884475579576476}
   m_Layer: 9
   m_Name: Human
   m_TagString: Untagged
@@ -388,7 +389,7 @@ MonoBehaviour:
   EnemyMask:
     serializedVersion: 2
     m_Bits: 256
-  attackRadius: 2
+  attackRadius: 1.2
   damage: 12
   anim: {fileID: 0}
 --- !u!114 &3105401985368833523
@@ -566,6 +567,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameTime: 20
+--- !u!70 &2859884475579576476
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4566793840482008395}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.019099327, y: 0.4419627}
+  m_Size: {x: 0.3481439, y: 0.8682203}
+  m_Direction: 0
 --- !u!1 &4888364282495699952
 GameObject:
   m_ObjectHideFlags: 0

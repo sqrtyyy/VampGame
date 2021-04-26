@@ -278,7 +278,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2703405921176051352}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.17, y: 0.64, z: 3.2891922}
+  m_LocalPosition: {x: 0.187, y: 0.521, z: 3.2891922}
   m_LocalScale: {x: 1.1176713, y: 1.0667284, z: 1}
   m_Children: []
   m_Father: {fileID: 4508945831261510693}
@@ -423,6 +423,7 @@ GameObject:
   - component: {fileID: 7685511579016623526}
   - component: {fileID: 6010263648483029408}
   - component: {fileID: 8424785281421906914}
+  - component: {fileID: 6141493855865247424}
   m_Layer: 8
   m_Name: Vampire
   m_TagString: Untagged
@@ -706,7 +707,7 @@ MonoBehaviour:
   EnemyMask:
     serializedVersion: 2
     m_Bits: 512
-  attackRadius: 2
+  attackRadius: 1.2
   damage: 15
   anim: {fileID: 0}
 --- !u!114 &7080673359195429160
@@ -768,6 +769,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameTime: 20
+--- !u!70 &6141493855865247424
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4508945831261510683}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0072344816, y: 0.51830995}
+  m_Size: {x: 0.3761157, y: 1.0366206}
+  m_Direction: 0
 --- !u!1 &4562008599994105129
 GameObject:
   m_ObjectHideFlags: 0
