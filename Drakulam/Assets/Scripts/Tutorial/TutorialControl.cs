@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class TutorialControl : IControllable
 {
-    private TutoriaInput _tutorialManager;
+    private TutorialInput _tutorialManager;
     public TutorialManager manager;
 
     private void Awake()
     {
-        _tutorialManager = new TutoriaInput();
+        _tutorialManager = new TutorialInput();
         _tutorialManager.Tutorial.atack.canceled += ctx => { manager.AttackTrigger(); };
         _tutorialManager.Tutorial.next.performed += ctx => { manager.NextTrigger(); };
         _tutorialManager.Tutorial.move.canceled += ctx => { manager.MoveTrigger(); };
