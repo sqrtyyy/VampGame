@@ -82,6 +82,9 @@ public class CharacterControl : IControllable
                 // Reset timer
                 delayToIdle = 0.05f;
                 anim.SetInteger("animState", 1);
+                
+                //added this part of code because step sound worked here
+                GetComponent<ISoundable>().playSound(ISoundable.SoundName.STEP_SOUND);
             }
             else
             {
