@@ -397,12 +397,13 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\n\n\n\n\n\n\u0410\u043D\u0442\u043E\u043D\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0435\u0439\n\n\n\u0410\u043D\u0438\u043A\u0438\u043D
-    \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440\n\u0421\u043C\u0438\u0440\u043D\u043E\u0432\u0430
+    \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440\n\u0414\u0430\u0440\u0438\u0436\u0430\u043F\u043E\u0432
+    \u042F\u043C\u043F\u0438\u043B\n\u0421\u043C\u0438\u0440\u043D\u043E\u0432\u0430
     \u0414\u0430\u0440\u044C\u044F\n\u0428\u0430\u0433\u0432\u0430\u043B\u0438\u0435\u0432
-    \u041C\u0438\u0445\u0430\u0438\u043B\n\n\n\u0412\u043E\u0439\u0446\u044E\u0446\u043A\u0430\u044F
-    \u0415\u043B\u0438\u0437\u0430\u0432\u0435\u0442\u0430\n\n\n\n\n\n\"Rogue Fantasy
+    \u041C\u0438\u0445\u0430\u0438\u043B\n\n\n\n\u0412\u043E\u0439\u0446\u044E\u0446\u043A\u0430\u044F
+    \u0415\u043B\u0438\u0437\u0430\u0432\u0435\u0442\u0430\n\n\n\n\n\"Rogue Fantasy
     Catacombs\" by Szadi Art\nhttps://szadiart.itch.io/rogue-fantasy-catacombs\n\"Rogue
-    Fantasy Castle\" by Szadi Art. Licensed under EULA \n\n\n\"SCP-x7x (6th Floor)\",
+    Fantasy Castle\" by Szadi Art. Licensed under EULA \n\n\n\n\"SCP-x7x (6th Floor)\",
     \"Vanishing\"\nKevin MacLeod (incompetech.com)\nLicensed under Creative Commons:
     By Attribution 3.0\nhttp://creativecommons.org/licenses/by/3.0/"
 --- !u!222 &452645843
@@ -2194,7 +2195,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 842399145}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.8, y: -735.8, z: -48.875}
+  m_LocalPosition: {x: 4.8, y: -790.37, z: -48.875}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1898137067}
@@ -2383,7 +2384,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u041A\u043E\u043C\u0430\u043D\u0434\u0430 \u0440\u0430\u0437\u0440\u0430\u0431\u043E\u0442\u043A\u0438\n\n\u0422\u0438\u043C\u043B\u0438\u0434\n\n\u0422\u0435\u0445\u043B\u0438\u0434\n\n\u0420\u0430\u0437\u0440\u0430\u0431\u043E\u0442\u0447\u0438\u043A\u0438\n\n\n\n\u0414\u0438\u0437\u0430\u0439\u043D\u0435\u0440\n\n\n\u0411\u043B\u0430\u0433\u043E\u0434\u0430\u0440\u043D\u043E\u0441\u0442\u0438\n\u0413\u0440\u0430\u0444\u0438\u043A\u0430\n\n\n\n\u041C\u0443\u0437\u044B\u043A\u0430"
+  m_Text: "\u041A\u043E\u043C\u0430\u043D\u0434\u0430 \u0440\u0430\u0437\u0440\u0430\u0431\u043E\u0442\u043A\u0438\n\n\u0422\u0438\u043C\u043B\u0438\u0434\n\n\u0422\u0435\u0445\u043B\u0438\u0434\n\n\u0420\u0430\u0437\u0440\u0430\u0431\u043E\u0442\u0447\u0438\u043A\u0438\n\n\n\n\n\u0414\u0438\u0437\u0430\u0439\u043D\u0435\u0440\n\n\n\u0411\u043B\u0430\u0433\u043E\u0434\u0430\u0440\u043D\u043E\u0441\u0442\u0438\n\u0413\u0440\u0430\u0444\u0438\u043A\u0430\n\n\n\n\u041C\u0443\u0437\u044B\u043A\u0430"
 --- !u!222 &1052453355
 CanvasRenderer:
   m_ObjectHideFlags: 0

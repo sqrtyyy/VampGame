@@ -7,7 +7,10 @@ public class HittableCharacter : IHittable
     {
         AsynchronousHit(damage);
         PhotonView photonView = PhotonView.Get(this);
-        photonView.RPC("AsynchronousHit", RpcTarget.Others, damage);
+        if (PhotonNetwork.IsConnectedAndReady && PhotonNetwork.CurrentRoom != null)
+        {
+            photonView.RPC("AsynchronousHit", RpcTarget.Others, damage);
+        }
     }
 
     [PunRPC]

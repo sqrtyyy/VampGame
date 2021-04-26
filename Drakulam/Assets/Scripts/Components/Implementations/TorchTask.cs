@@ -30,7 +30,10 @@ public class TorchTask : ITask
     public override void StartTask()
     {
         AsyncStartTask();
-        photonView.RPC("AsyncStartTask", RpcTarget.Others);
+        if (PhotonNetwork.IsConnectedAndReady && PhotonNetwork.CurrentRoom != null)
+        {
+            photonView.RPC("AsyncStartTask", RpcTarget.Others);
+        }
     }
 
     [PunRPC]
@@ -47,7 +50,10 @@ public class TorchTask : ITask
     public override void SabotageTask()
     {
         AsyncSabotageTask();
-        photonView.RPC("AsyncSabotageTask", RpcTarget.Others);
+        if (PhotonNetwork.IsConnectedAndReady && PhotonNetwork.CurrentRoom != null)
+        {
+            photonView.RPC("AsyncSabotageTask", RpcTarget.Others);
+        }
     }
 
     [PunRPC]
