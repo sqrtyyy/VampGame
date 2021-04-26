@@ -51,14 +51,6 @@ public class @CharacterInput : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Die"",
-                    ""type"": ""Button"",
-                    ""id"": ""22e5a617-9b61-42f8-b66d-d016b36866ac"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
                     ""name"": ""Hurt"",
                     ""type"": ""Button"",
                     ""id"": ""3e39f74c-4836-4c04-adb6-fe1da826d7d2"",
@@ -309,12 +301,12 @@ public class @CharacterInput : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""4d548051-6bea-44c9-a5c8-03778c859b42"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""id"": ""76382a06-df92-444e-beab-5c1a2109ad7c"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Die"",
+                    ""action"": ""Atack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -918,7 +910,6 @@ public class @CharacterInput : IInputActionCollection, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Atack = m_Player.FindAction("Atack", throwIfNotFound: true);
-        m_Player_Die = m_Player.FindAction("Die", throwIfNotFound: true);
         m_Player_Hurt = m_Player.FindAction("Hurt", throwIfNotFound: true);
         m_Player_ShowTasks = m_Player.FindAction("ShowTasks", throwIfNotFound: true);
         // UI
@@ -986,7 +977,6 @@ public class @CharacterInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Atack;
-    private readonly InputAction m_Player_Die;
     private readonly InputAction m_Player_Hurt;
     private readonly InputAction m_Player_ShowTasks;
     public struct PlayerActions
@@ -997,7 +987,6 @@ public class @CharacterInput : IInputActionCollection, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Atack => m_Wrapper.m_Player_Atack;
-        public InputAction @Die => m_Wrapper.m_Player_Die;
         public InputAction @Hurt => m_Wrapper.m_Player_Hurt;
         public InputAction @ShowTasks => m_Wrapper.m_Player_ShowTasks;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -1021,9 +1010,6 @@ public class @CharacterInput : IInputActionCollection, IDisposable
                 @Atack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAtack;
                 @Atack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAtack;
                 @Atack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAtack;
-                @Die.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDie;
-                @Die.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDie;
-                @Die.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDie;
                 @Hurt.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHurt;
                 @Hurt.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHurt;
                 @Hurt.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHurt;
@@ -1046,9 +1032,6 @@ public class @CharacterInput : IInputActionCollection, IDisposable
                 @Atack.started += instance.OnAtack;
                 @Atack.performed += instance.OnAtack;
                 @Atack.canceled += instance.OnAtack;
-                @Die.started += instance.OnDie;
-                @Die.performed += instance.OnDie;
-                @Die.canceled += instance.OnDie;
                 @Hurt.started += instance.OnHurt;
                 @Hurt.performed += instance.OnHurt;
                 @Hurt.canceled += instance.OnHurt;
@@ -1215,7 +1198,6 @@ public class @CharacterInput : IInputActionCollection, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnAtack(InputAction.CallbackContext context);
-        void OnDie(InputAction.CallbackContext context);
         void OnHurt(InputAction.CallbackContext context);
         void OnShowTasks(InputAction.CallbackContext context);
     }
