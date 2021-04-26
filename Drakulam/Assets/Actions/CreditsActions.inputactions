@@ -1,0 +1,33 @@
+{
+    "name": "CreditsActions",
+    "maps": [
+        {
+            "name": "CreditsMap",
+            "id": "f97beaf9-c1a8-418a-bb91-5966629982d3",
+            "actions": [
+                {
+                    "name": "ExitCredits",
+                    "type": "Button",
+                    "id": "f429204a-718b-4d18-8880-e23cc3f9b440",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d3deac57-d31e-4086-89ba-04a77790de2d",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ExitCredits",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
