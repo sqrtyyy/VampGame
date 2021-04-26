@@ -33,7 +33,12 @@ public class HumanHealth : IHealth
         if (health <= 0)
         {
             anim.SetTrigger("death");
+            GetComponent<ISoundable>().playSound(ISoundable.SoundName.DEATH_SOUND);
             StartCoroutine(Die());
+        }
+        else //else for playing just one sound
+        {
+            GetComponent<ISoundable>().playSound(ISoundable.SoundName.HIT_REACTION_SOUND);
         }
     }
 

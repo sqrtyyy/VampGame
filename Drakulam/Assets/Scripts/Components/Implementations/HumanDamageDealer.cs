@@ -34,6 +34,7 @@ public class HumanDamageDealer : IDamageDealer
             {
                 enemy.GetComponent<IHittable>().Hit(damage);
             }
+            GetComponent<ISoundable>().playSound(ISoundable.SoundName.ATTACK_SOUND);
 
             prevTime = Time.time;
         }
