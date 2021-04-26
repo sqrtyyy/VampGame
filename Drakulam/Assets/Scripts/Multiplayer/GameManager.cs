@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public Transform _humanUI;
     public Transform _vampUI;
 
+    public AudioSource beginningMusic;
     static private GameObject player;
     int _nVampires = 1;
     string namePlayerPrefub;
@@ -147,11 +148,11 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    private void StartGame()
-    {
+    private void StartGame() {
         _started = true;
         _timeStart = PhotonNetwork.Time;
         player.GetComponent<CharacterControl>().isMuvable = true;
+        beginningMusic.Play();
     }
 
     public static void UpdateTaskList()
