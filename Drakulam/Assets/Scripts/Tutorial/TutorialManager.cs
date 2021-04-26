@@ -34,6 +34,11 @@ public class TutorialManager : MonoBehaviour
     private const int TutorialVSabotageTimer = 9;
     private const int TutorialVMap = 10;
     private const int TutorialEnding = 11;
+    
+    private double _timeStart;
+
+    private double _timePeriod = 1 * 60;
+    private bool _started = false;
 
     private Vector3 lastHumanPos;
 
@@ -113,6 +118,7 @@ public class TutorialManager : MonoBehaviour
         _humanPose = human.GetComponent<Transform>();
         _vampirePose = vampire.GetComponent<Transform>();
     }
+    
 
     void Update()
     {
@@ -139,6 +145,8 @@ public class TutorialManager : MonoBehaviour
             Debug.Log("blablabla");
             CompleteStep();
         }
+
+        UpdateTimer();
     }
     
     public void AttackTrigger()
@@ -182,4 +190,18 @@ public class TutorialManager : MonoBehaviour
         Camera.main.transform.Find("VampireLight").gameObject.SetActive(true);
         Camera.main.transform.Find("VampireLight_NoNM").gameObject.SetActive(true);
     }
+    
+    private void UpdateTimer()
+    {
+        int delteTime = (int)(_timePeriod - (Time.time - _timeStart));
+        if (_timeStart == 0 && delteTime < 0)
+        {
+            _UI.GetComponent<TimerUpdate>().UpdateTimer((int)_timePeriod / 60, (int)_timePeriod % 60);
+            return;
+        }
+        int minutes = delteTime / 60;
+        int seconds = delteTime % 60;
+        _UI.GetComponent<TimerUpdate>().UpdateTimer(minutes, seconds);
+    }
+    
 }
