@@ -25,7 +25,7 @@ public class VampireInterface : ICharacterInterface
         Text taskListText = taskList.transform.Find("Viewport/Content/Text").GetComponent<Text>();
 
         Dictionary<string, Tuple<int, int>> allTasks = TaskManager.Instance().getAllTasks();
-        taskListText.text = " Помешать: \n";
+        taskListText.text = ""; // " Помешать: \n";
         foreach (KeyValuePair<string, Tuple<int, int>> entry in allTasks)
         {
             int numOfCompleted = entry.Value.Item1;
@@ -64,6 +64,7 @@ public class VampireInterface : ICharacterInterface
             return;*/
         healthBar = Camera.main.transform.Find(uiName).Find("HealthBar").GetComponent<Slider>();
         taskList = Camera.main.transform.Find(uiName).Find("TaskList");
+        taskList.Find("Target").GetComponent<Text>().text = " Помешать:";
         timerText = Camera.main.transform.Find(uiName).Find("Timer").GetComponent<Text>();
         AsyncUpdateTaskList();
     }

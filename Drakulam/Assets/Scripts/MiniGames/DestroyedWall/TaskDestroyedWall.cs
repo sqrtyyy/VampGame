@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
 using Random = System.Random;
+using Photon.Pun;
 
 public class TaskDestroyedWall : ITask
 {
@@ -12,6 +11,7 @@ public class TaskDestroyedWall : ITask
     private const int _randomBrickNum = 11;
     //private const int _choosableBricksNumber = 3;
     private int _answer = -1;
+    private ExclamationMark _exclamationMark;
 
     private Point[] _brickCenters = new Point[]
     {
@@ -25,8 +25,24 @@ public class TaskDestroyedWall : ITask
     public GameObject crack;
     public GameObject[] bricks;
 
-    
-    
+    PhotonView photonView;
+
+    private void Start()
+    {
+        photonView = PhotonView.Get(this);
+        AddTaskManager(TaskManager.Instance());
+        var exclamationMarkName = "ExclamationMark";
+        _exclamationMark = Functions.GetScriptOnChild<ExclamationMark>(this, exclamationMarkName);
+        if (_exclamationMark == null)
+        {
+            Debug.Log("EXMARK exclamation mark script is null");
+            return;
+        }
+            
+        _exclamationMark.canBeSabotaged = true;
+    }
+
+
     public override void StartTask()
     {
         if (_isCompleted == true)
@@ -36,10 +52,22 @@ public class TaskDestroyedWall : ITask
         NotifyTaskManager(GetTaskName(), _isCompleted);
     }
 
+    [PunRPC]
+    void AsyncChangeStatus(bool isCompleted)
+    {
+        _isCompleted = isCompleted;
+        NotifyTaskManager(GetTaskName(), isCompleted);
+        _exclamationMark.ChangeStatus();
+        /*if (isCompleted)
+            _answer = -1;*/
+    }
+
     public override void SabotageTask()
     {
-        _isCompleted = false;
-        NotifyTaskManager(GetTaskName(), _isCompleted);
+        AsyncChangeStatus(false);
+        if (PhotonNetwork.IsConnectedAndReady)
+            photonView.RPC("AsyncChangeStatus", RpcTarget.Others, false);
+        GameManager.UpdateTaskList();
     }
     public override bool IsCompleted()
     {
@@ -75,6 +103,8 @@ public class TaskDestroyedWall : ITask
 
     public override void SetPlayerInfo(PlayerInfo playerInfo)
     {
+        if (_exclamationMark != null)
+            _exclamationMark.SetPlayerClass(playerInfo.characterClass);
     }
 
     public void CloseGame()
@@ -87,10 +117,12 @@ public class TaskDestroyedWall : ITask
         Debug.Log("Проверяем ответ "+ brickIndex.ToString());
         if (brickIndex == _answer)
         {
-            _isCompleted = true;
+            AsyncChangeStatus(true);
+            if (PhotonNetwork.IsConnectedAndReady)
+                photonView.RPC("AsyncChangeStatus", RpcTarget.Others, true);
+            GameManager.UpdateTaskList();
             _answer = -1;
             CloseGame();
-            NotifyTaskManager(GetTaskName(), _isCompleted);
         }
 
     }
