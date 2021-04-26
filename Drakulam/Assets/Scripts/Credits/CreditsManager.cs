@@ -8,12 +8,14 @@ public class CreditsManager : MonoBehaviour
 {
     private const string CreditsSceneName = "Credits";
     private const string MenuSceneName = "menu";
+    private bool IsOnCreditsScene = false;
 
     private CreditsActions controller;
 
-    public void Awake()
+    private void Start()
     {
         controller = new CreditsActions();
+        controller.CreditsMap.Enable();
         controller.CreditsMap.ExitCredits.performed += ctx => {
             LoadMenu();
         };
@@ -21,12 +23,19 @@ public class CreditsManager : MonoBehaviour
 
     public void LoadMenu()
     {
-        SceneManager.LoadScene(MenuSceneName);
+        if (IsOnCreditsScene)
+        {
+            SceneManager.LoadScene(MenuSceneName);
+            IsOnCreditsScene = false;
+        }
     }
 
     public void LoadCredits()
     {
-        SceneManager.LoadScene(CreditsSceneName);
+        if (!IsOnCreditsScene)
+        {
+            SceneManager.LoadScene(CreditsSceneName);
+            IsOnCreditsScene = true;
+        }
     }
-    
 }

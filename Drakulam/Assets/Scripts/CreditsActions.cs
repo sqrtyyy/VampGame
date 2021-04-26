@@ -42,19 +42,7 @@ public class @CreditsActions : IInputActionCollection, IDisposable
             ]
         }
     ],
-    ""controlSchemes"": [
-        {
-            ""name"": ""keyboard"",
-            ""bindingGroup"": ""keyboard"",
-            ""devices"": [
-                {
-                    ""devicePath"": ""<Keyboard>"",
-                    ""isOptional"": false,
-                    ""isOR"": false
-                }
-            ]
-        }
-    ]
+    ""controlSchemes"": []
 }");
         // CreditsMap
         m_CreditsMap = asset.FindActionMap("CreditsMap", throwIfNotFound: true);
@@ -137,15 +125,6 @@ public class @CreditsActions : IInputActionCollection, IDisposable
         }
     }
     public CreditsMapActions @CreditsMap => new CreditsMapActions(this);
-    private int m_keyboardSchemeIndex = -1;
-    public InputControlScheme keyboardScheme
-    {
-        get
-        {
-            if (m_keyboardSchemeIndex == -1) m_keyboardSchemeIndex = asset.FindControlSchemeIndex("keyboard");
-            return asset.controlSchemes[m_keyboardSchemeIndex];
-        }
-    }
     public interface ICreditsMapActions
     {
         void OnExitCredits(InputAction.CallbackContext context);
