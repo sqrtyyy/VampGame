@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 using UnityEngine;
 using UnityEngine.UI;
+using Utils;
 using Random = System.Random;
+using Photon.Pun;
 
 public class TaskDestroyedWall : ITask
 {
@@ -24,8 +24,15 @@ public class TaskDestroyedWall : ITask
     public GameObject crack;
     public GameObject[] bricks;
 
-    
-    
+    PhotonView photonView;
+
+    private void Start()
+    {
+        photonView = PhotonView.Get(this);
+        AddTaskManager(TaskManager.Instance());
+    }
+
+
     public override void StartTask()
     {
         if (_isCompleted == true)
@@ -35,10 +42,21 @@ public class TaskDestroyedWall : ITask
         NotifyTaskManager(GetTaskName(), _isCompleted);
     }
 
+    [PunRPC]
+    void AsyncChangeStatus(bool isCompleted)
+    {
+        _isCompleted = isCompleted;
+        NotifyTaskManager(GetTaskName(), isCompleted);
+        /*if (isCompleted)
+            _answer = -1;*/
+    }
+
     public override void SabotageTask()
     {
-        _isCompleted = false;
-        NotifyTaskManager(GetTaskName(), _isCompleted);
+        AsyncChangeStatus(false);
+        if (PhotonNetwork.IsConnectedAndReady)
+            photonView.RPC("AsyncChangeStatus", RpcTarget.Others, false);
+        GameManager.UpdateTaskList();
     }
     public override bool IsCompleted()
     {
@@ -72,6 +90,10 @@ public class TaskDestroyedWall : ITask
         return "Почините разрушенную стену.";
     }
 
+    public override void SetPlayerInfo(PlayerInfo playerInfo)
+    {
+    }
+
     public void CloseGame()
     {
         graphics.SetActive(false);
@@ -82,10 +104,12 @@ public class TaskDestroyedWall : ITask
         Debug.Log("Проверяем ответ "+ brickIndex.ToString());
         if (brickIndex == _answer)
         {
-            _isCompleted = true;
+            AsyncChangeStatus(true);
+            if (PhotonNetwork.IsConnectedAndReady)
+                photonView.RPC("AsyncChangeStatus", RpcTarget.Others, true);
+            GameManager.UpdateTaskList();
             _answer = -1;
             CloseGame();
-            NotifyTaskManager(GetTaskName(), _isCompleted);
         }
 
     }

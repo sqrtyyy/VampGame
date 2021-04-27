@@ -6,24 +6,29 @@ using UnityEngine;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
-    private byte countPlayers = 4;
-    public List<RoomInfo> roomList;
+    private byte countPlayers = 3;
+    public Dictionary<string, RoomInfo> roomDict;
     public RoomListInitializer roomListInitializer;
     //public RoomListInitializer roomListInitializer;
     // Start is called before the first frame update
     void Start()
     {
-        roomList = new List<RoomInfo>();
-        PhotonNetwork.NickName = "Player " + Random.Range(1000, 9999);
-        PhotonNetwork.AutomaticallySyncScene = true;
-        PhotonNetwork.GameVersion = "1.0.0";
-        PhotonNetwork.ConnectUsingSettings();
+        roomDict = new Dictionary<string, RoomInfo>();
+        Connect();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    private void Connect()
+    {
+        PhotonNetwork.NickName = "Player " + Random.Range(1000, 9999);
+        PhotonNetwork.AutomaticallySyncScene = true;
+        PhotonNetwork.GameVersion = "1.0.0";
+        PhotonNetwork.ConnectUsingSettings();
     }
 
     public override void OnConnectedToMaster()
@@ -45,11 +50,15 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public void CreateRoom(string name, string password)
     {
-        foreach (var room in roomList)
-            if (name == room.Name)
-
         if (!PhotonNetwork.IsConnectedAndReady)
             return;
+        
+        foreach (var room in roomDict.Values)
+            if (name == room.Name)
+            {
+                JoinRoom(room.Name, "");
+                return;
+            }
         PhotonNetwork.CreateRoom(name, new Photon.Realtime.RoomOptions { MaxPlayers = countPlayers, IsOpen = true, IsVisible = true });
     }
 
@@ -61,9 +70,20 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public override void OnRoomListUpdate(List<RoomInfo> RoomList)
     {
         Debug.Log("Room list:");
-        roomList = RoomList;
+        //roomList = RoomList;
+        foreach (var room in RoomList)
+        {
+            if (room.PlayerCount != 0 && room.PlayerCount != room.MaxPlayers)
+                if (!roomDict.ContainsKey(room.Name))
+                    roomDict.Add(room.Name, room);
+                else
+                    roomDict[room.Name] = room;
+            else
+                if (roomDict.ContainsKey(room.Name))
+                    roomDict.Remove(room.Name);
+        }
         roomListInitializer.UpdateItems();
-        foreach (var room in roomList)
+        foreach (var room in roomDict.Values)
             Debug.Log(room.Name);
     }
 }

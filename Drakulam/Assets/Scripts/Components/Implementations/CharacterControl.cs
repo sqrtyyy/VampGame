@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Photon.Pun;
 
@@ -25,10 +26,6 @@ public class CharacterControl : IControllable
     private void Awake()
     {
         controller = new CharacterInput();
-        controller.Player.Die.performed += ctx => { 
-            if (photonView.IsMine)
-                anim.SetTrigger("death"); 
-            };
         controller.Player.Atack.performed += ctx =>
         {
             if (photonView.IsMine)
@@ -43,13 +40,19 @@ public class CharacterControl : IControllable
                 }
             }
         };
+        controller.Player.Exit.performed += ctx =>
+        {
+            if (photonView.IsMine)
+            {
+                SceneManager.LoadScene("menu");
+            }
+        };
         controller.Player.Hurt.performed += ctx =>
         {
             if (photonView.IsMine)
                 GetComponent<ITaskCompleter>().FindTask();
         };
 
-        //WATCH OUT
         controller.Player.ShowTasks.performed += ctx =>
         {
             if (photonView.IsMine)
@@ -83,6 +86,9 @@ public class CharacterControl : IControllable
                 // Reset timer
                 delayToIdle = 0.05f;
                 anim.SetInteger("animState", 1);
+                
+                //added this part of code because step sound worked here
+                GetComponent<ISoundable>().playSound(ISoundable.SoundName.STEP_SOUND);
             }
             else
             {
@@ -105,15 +111,25 @@ public class CharacterControl : IControllable
     {
         controller.Disable();
     }
-    
-    protected void Update()
+
+    protected void FixedUpdate()
     {
         if (!isMuvable)
             return;
         if (!photonView.IsMine)
             return;
-        Move( controller.Player.Move.ReadValue<Vector2>());
+        Move(controller.Player.Move.ReadValue<Vector2>());
         MoveCamera();
+    }
+    
+    protected void Update()
+    {
+        /*if (!isMuvable)
+            return;
+        if (!photonView.IsMine)
+            return;
+        Move( controller.Player.Move.ReadValue<Vector2>());
+        MoveCamera();*/
     }
     
     private void Flip()
@@ -133,10 +149,13 @@ public class CharacterControl : IControllable
         // offset of the camera by y-axis needed to center camera by human's sprite
         float offsetY = 1.0f;
 
-        Vector3 newPos = Camera.main.transform.position;
+        Vector3 prevPos = Camera.main.transform.position;
+        Vector3 newPos = prevPos;
         newPos.x = body2D.position.x;
         newPos.y = body2D.position.y + offsetY;
         Camera.main.transform.position = newPos;
+        //Vector3 velocity = (newPos - prevPos) * Time.fixedDeltaTime;
+        //Camera.main.transform.position = Vector3.SmoothDamp(prevPos, newPos, ref velocity, 0.08f);
     }
     
     protected void Start()

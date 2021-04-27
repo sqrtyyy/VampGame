@@ -2,6 +2,7 @@
 using System.Collections;
 using System;
 using System.Collections.Generic;
+using Utils;
 
 public class TaskManager 
 {
@@ -60,6 +61,16 @@ public class TaskManager
         }
     }
 
+    public void TasksSetPlayerInfo(PlayerInfo playerInfo)
+    {
+        GameObject[] tasks = GameObject.FindGameObjectsWithTag("Task");
+        foreach (var task in tasks)
+        {
+            var taskObject = task.GetComponent<ITask>();
+            if (taskObject != null)
+                taskObject.SetPlayerInfo(playerInfo);
+        }
+    }
 
     private void InitDictionary()
     {

@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WinLoseScenes/VampireWin.unity
     guid: c8cc4d9ccae34c94b80b308200b4cb25
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 306349da53d816a4cbf9fac148abba03
   m_configObjects: {}

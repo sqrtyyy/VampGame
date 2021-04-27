@@ -10,13 +10,15 @@ public class HumanInterface : ICharacterInterface
     void Start()
     {
         photonView = PhotonView.Get(this);
-        AsyncUpdateTaskList();
     }
 
     public override void UpdateTaskList()
     {
         AsyncUpdateTaskList();
-        photonView.RPC("AsyncUpdateTaskList", RpcTarget.Others);
+        if (PhotonNetwork.IsConnectedAndReady && PhotonNetwork.CurrentRoom != null)
+        {
+            photonView.RPC("AsyncUpdateTaskList", RpcTarget.Others);
+        }
     }
 
     [PunRPC]
@@ -25,7 +27,8 @@ public class HumanInterface : ICharacterInterface
         Text taskListText = taskList.Find("Viewport/Content/Text").GetComponent<Text>();
 
         Dictionary<string, Tuple<int, int>> allTasks = TaskManager.Instance().getAllTasks();
-        taskListText.text = " Нужно: \n";
+        taskListText.text = ""; // " Нужно: \n";
+
         foreach (KeyValuePair<string, Tuple<int, int>> entry in allTasks)
         {
             int numOfCompleted = entry.Value.Item1;
@@ -64,6 +67,8 @@ public class HumanInterface : ICharacterInterface
             return;*/
         healthBar = Camera.main.transform.Find(uiName).Find("HealthBar").GetComponent<Slider>();
         taskList = Camera.main.transform.Find(uiName).Find("TaskList");
+        taskList.Find("Target").GetComponent<Text>().text = " Нужно:";
         timerText = Camera.main.transform.Find(uiName).Find("Timer").GetComponent<Text>();
+        AsyncUpdateTaskList();
     }
 }

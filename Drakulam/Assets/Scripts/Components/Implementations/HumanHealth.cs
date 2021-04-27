@@ -33,7 +33,12 @@ public class HumanHealth : IHealth
         if (health <= 0)
         {
             anim.SetTrigger("death");
+            GetComponent<ISoundable>().playSound(ISoundable.SoundName.DEATH_SOUND);
             StartCoroutine(Die());
+        }
+        else //else for playing just one sound
+        {
+            GetComponent<ISoundable>().playSound(ISoundable.SoundName.HIT_REACTION_SOUND);
         }
     }
 
@@ -55,8 +60,17 @@ public class HumanHealth : IHealth
                 Destroy(firstSpot);
             }
             Debug.LogWarning(" spawned");
+            if (PhotonNetwork.IsConnectedAndReady && PhotonNetwork.CurrentRoom != null)
+            {
+                bloodSpots.Enqueue(PhotonNetwork.Instantiate(bloodSpotPrefab.name, transform.position,
+                    Quaternion.identity));
+            }
+            else
+            {
+                bloodSpots.Enqueue(Instantiate(bloodSpotPrefab, transform.position,
+                    Quaternion.identity));
+            }
 
-            bloodSpots.Enqueue(PhotonNetwork.Instantiate(bloodSpotPrefab.name, transform.position, Quaternion.identity));
             prevSpawn = Time.time;
         }
         

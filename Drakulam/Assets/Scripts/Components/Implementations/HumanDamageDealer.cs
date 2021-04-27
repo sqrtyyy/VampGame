@@ -21,7 +21,7 @@ public class HumanDamageDealer : IDamageDealer
     
     protected void Start()
     {
-        anim = GetComponent<Animator>();
+        // anim = GetComponent<Animator>();
     }
 
     public override void Attack ()
@@ -34,6 +34,7 @@ public class HumanDamageDealer : IDamageDealer
             {
                 enemy.GetComponent<IHittable>().Hit(damage);
             }
+            GetComponent<ISoundable>().playSound(ISoundable.SoundName.ATTACK_SOUND);
 
             prevTime = Time.time;
         }

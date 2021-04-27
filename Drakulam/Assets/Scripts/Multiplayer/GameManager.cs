@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Utils;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
@@ -15,51 +16,60 @@ public class GameManager : MonoBehaviourPunCallbacks
     public Transform _humanUI;
     public Transform _vampUI;
 
-    private GameObject player;
-    [SerializeField]
+    public AudioSource beginningMusic;
+    static private GameObject player;
     int _nVampires = 1;
     string namePlayerPrefub;
-    private string uiName;
     Transform _UI;
 
+    private double _timeStart;
+
+    private double _timePeriod = 10 * 60;
+    private bool _started = false;
+
+
+    private void Awake()
+    {
+    }
     // Start is called before the first frame update
     void Start()
-    {        
+    {
+        _timeStart = 0;
         if (PhotonNetwork.CurrentRoom.PlayerCount < PhotonNetwork.CurrentRoom.MaxPlayers)
-            SpawnHuman();
+        {
+            Spawn(_humanPrefab, _humanUI, _humanSpawn);
+            TaskManager.Instance().TasksSetPlayerInfo(new PlayerInfo(PlayerInfo.CharacterClass.Human));
+            CharacterHumanLightStatus(true);
+            CharacterVampireLightStatus(false);
+        }
         else
-            SpawnVampire();
+        {
+            Spawn(_vampPrefub, _vampUI, _vampireSpawn);
+            TaskManager.Instance().TasksSetPlayerInfo(new PlayerInfo(PlayerInfo.CharacterClass.Vampire));
+            CharacterVampireLightStatus(true);
+            CharacterHumanLightStatus(false);
+        }
 
         if (PhotonNetwork.CurrentRoom.PlayerCount == PhotonNetwork.CurrentRoom.MaxPlayers)
             photonView.RPC("StartGame", RpcTarget.All);
     }
 
-    private void SpawnHuman()
+    private void Spawn(GameObject playerPrefub, Transform ui, Transform spawnPoint)
     {
-        namePlayerPrefub = _humanPrefab.name;
-        _humanUI.name = "UI";
-        _UI = Instantiate<Transform>(_humanUI);
+        namePlayerPrefub = playerPrefub.name;
+        _UI = Instantiate<Transform>(ui);
         _UI.SetParent(Camera.main.transform);
-        player = PhotonNetwork.Instantiate(_humanPrefab.name, _humanSpawn.position, Quaternion.identity);
+        player = PhotonNetwork.Instantiate(playerPrefub.name, spawnPoint.position, Quaternion.identity);
         player.GetComponent<CharacterControl>().isMuvable = false;
         player.GetComponent<ICharacterInterface>().SetUI(_UI.name);
-        uiName = _UI.name;
-    }
-
-    private void SpawnVampire()
-    {
-        namePlayerPrefub = _vampPrefub.name;
-        _UI = Instantiate<Transform>(_vampUI);
-        _UI.SetParent(Camera.main.transform);
-        player = PhotonNetwork.Instantiate(_vampPrefub.name, _vampireSpawn.position, Quaternion.identity);
-        player.GetComponent<CharacterControl>().isMuvable = false;
-        player.GetComponent<ICharacterInterface>().SetUI(_UI.name);
-        uiName = _UI.name;
+        TaskManager.Instance().TasksSetPlayerInfo(new PlayerInfo(PlayerInfo.CharacterClass.Vampire));
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (_started && (PhotonNetwork.CurrentRoom.PlayerCount < 2 || _nVampires == 0))
+            SceneManager.LoadScene(3); // human win
         //________________________________________
         /*
          * This is the condition that the player is dead and must be respawned, 
@@ -68,22 +78,21 @@ public class GameManager : MonoBehaviourPunCallbacks
          */
         if (player == null) //
         {
-            player = PhotonNetwork.Instantiate(_vampPrefub.name, _vampireSpawn.position, Quaternion.identity);
-            player.GetComponent<ICharacterInterface>().SetUI(uiName);
-            player.GetComponent<CharacterControl>().isMuvable = true;
+            CharacterHumanLightStatus(false);
+            CharacterVampireLightStatus(true);
             if (namePlayerPrefub == _humanPrefab.name)
             {
                 IncNumVamp();
                 photonView.RPC("IncNumVamp", RpcTarget.Others);
             }
-            namePlayerPrefub = _vampPrefub.name;
-            Destroy(_UI);
-            _UI = Instantiate<Transform>(_vampUI);
-            _UI.SetParent(Camera.main.transform);
-            player.GetComponent<ICharacterInterface>().SetUI(_UI.name);
+            Destroy(_UI.gameObject);
+            Spawn(_vampPrefub, _vampUI, _vampireSpawn);
+            player.GetComponent<CharacterControl>().isMuvable = true;
+            TaskManager.Instance().TasksSetPlayerInfo(new PlayerInfo(PlayerInfo.CharacterClass.Vampire));
         }
         //________________________________________
         //
+        UpdateTimer();
         CheckHumanWin();
         CheckVampWin();
     }
@@ -108,6 +117,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     void CheckHumanWin()
     {
+        if (_timeStart == 0)
+            return;
         if (!TaskManager.Instance().IsAllTasksCompleted())
             return;
         SceneManager.LoadScene(3);
@@ -115,9 +126,24 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     void CheckVampWin()
     {
-        if (_nVampires != PhotonNetwork.CurrentRoom.MaxPlayers)
+        if (_timeStart == 0)
             return;
-        SceneManager.LoadScene(4);
+        if (_timePeriod - (PhotonNetwork.Time - _timeStart) < 0 ||
+            _nVampires == PhotonNetwork.CurrentRoom.MaxPlayers)
+            SceneManager.LoadScene(4);
+    }
+
+    private void UpdateTimer()
+    {
+        int delteTime = (int)(_timePeriod - (PhotonNetwork.Time - _timeStart));
+        if (_timeStart == 0 && delteTime < 0)
+        {
+            _UI.GetComponent<TimerUpdate>().UpdateTimer((int)_timePeriod / 60, (int)_timePeriod % 60);
+            return;
+        }
+        int minutes = delteTime / 60;
+        int seconds = delteTime % 60;
+        _UI.GetComponent<TimerUpdate>().UpdateTimer(minutes, seconds);
     }
 
     [PunRPC]
@@ -127,8 +153,32 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    private void StartGame()
-    {
+    private void StartGame() {
+        _started = true;
+        _timeStart = PhotonNetwork.Time;
         player.GetComponent<CharacterControl>().isMuvable = true;
+        beginningMusic.Play();
+    }
+
+    public static void UpdateTaskList()
+    {
+        ICharacterInterface uiController;
+        if (player != null &&
+            (uiController = player.GetComponent<ICharacterInterface>()) != null)
+            uiController.UpdateTaskList();
+        else
+            Debug.LogError("it is impossible to update the task list");
+    }
+
+    void CharacterHumanLightStatus(bool isOn)
+    {
+        Camera.main.transform.Find("HumanLight").gameObject.SetActive(isOn);
+        Camera.main.transform.Find("HumanLight_NoNM").gameObject.SetActive(isOn);
+    }
+
+    void CharacterVampireLightStatus(bool isOn)
+    {
+        Camera.main.transform.Find("VampireLight").gameObject.SetActive(isOn);
+        Camera.main.transform.Find("VampireLight_NoNM").gameObject.SetActive(isOn);
     }
 }
