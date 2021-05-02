@@ -1,5 +1,22 @@
 # Release Notes 
 
+# Version 5.0
+
+## What's new
+ * Music and sounds
+ * Light mechanics
+ * Tutorial mode
+ * Exit buttons
+ * Tasks exclamation mark
+
+## What's improved
+ * Improved multiplayer
+ * Increase fps
+ * Fix hit-boxes
+ * New character control
+ * Fix bug with character stuck
+ * Minor changes in rooms decorations
+
 # Version 4.0
 
 ## What's new
