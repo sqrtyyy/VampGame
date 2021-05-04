@@ -37,14 +37,16 @@ public class GameManager : MonoBehaviourPunCallbacks
         _timeStart = 0;
         if (PhotonNetwork.CurrentRoom.PlayerCount < PhotonNetwork.CurrentRoom.MaxPlayers)
         {
-            Spawn(_humanPrefab, _humanUI, _humanSpawn);
+            Spawn(_humanPrefab, _humanSpawn);
+            SetUI(_humanUI, true);
             TaskManager.Instance().TasksSetPlayerInfo(new PlayerInfo(PlayerInfo.CharacterClass.Human));
             CharacterHumanLightStatus(true);
             CharacterVampireLightStatus(false);
         }
         else
         {
-            Spawn(_vampPrefub, _vampUI, _vampireSpawn);
+            Spawn(_vampPrefub, _vampireSpawn);
+            SetUI(_vampUI, true);
             TaskManager.Instance().TasksSetPlayerInfo(new PlayerInfo(PlayerInfo.CharacterClass.Vampire));
             CharacterVampireLightStatus(true);
             CharacterHumanLightStatus(false);
@@ -54,15 +56,26 @@ public class GameManager : MonoBehaviourPunCallbacks
             photonView.RPC("StartGame", RpcTarget.All);
     }
 
-    private void Spawn(GameObject playerPrefub, Transform ui, Transform spawnPoint)
+    private void Spawn(GameObject playerPrefub, Transform spawnPoint)
     {
         namePlayerPrefub = playerPrefub.name;
-        _UI = Instantiate<Transform>(ui);
-        _UI.SetParent(Camera.main.transform);
         player = PhotonNetwork.Instantiate(playerPrefub.name, spawnPoint.position, Quaternion.identity);
         player.GetComponent<CharacterControl>().isMuvable = false;
-        player.GetComponent<ICharacterInterface>().SetUI(_UI.name);
         TaskManager.Instance().TasksSetPlayerInfo(new PlayerInfo(PlayerInfo.CharacterClass.Vampire));
+    }
+
+    private void SetUI(Transform ui, bool respawnUI = false)
+    {
+        if (player == null)
+            return;
+        if (respawnUI)
+        {
+            if (_UI != null)
+                Destroy(_UI.gameObject);
+            _UI = Instantiate<Transform>(ui);
+            _UI.SetParent(Camera.main.transform);
+        }
+        player.GetComponent<ICharacterInterface>().SetUI(_UI.name);
     }
 
     // Update is called once per frame
@@ -80,13 +93,15 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             CharacterHumanLightStatus(false);
             CharacterVampireLightStatus(true);
+            bool respawnUI = false;
             if (namePlayerPrefub == _humanPrefab.name)
             {
                 IncNumVamp();
                 photonView.RPC("IncNumVamp", RpcTarget.Others);
+                respawnUI = true;
             }
-            Destroy(_UI.gameObject);
-            Spawn(_vampPrefub, _vampUI, _vampireSpawn);
+            Spawn(_vampPrefub, _vampireSpawn);
+            SetUI(_vampUI, respawnUI);
             player.GetComponent<CharacterControl>().isMuvable = true;
             TaskManager.Instance().TasksSetPlayerInfo(new PlayerInfo(PlayerInfo.CharacterClass.Vampire));
         }
