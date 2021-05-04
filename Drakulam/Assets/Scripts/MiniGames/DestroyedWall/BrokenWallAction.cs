@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Actions/BrokenWallActions.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Actions/BrokenWall.inputactions'
 
 using System;
 using System.Collections;
@@ -6,22 +6,22 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public class @BrokenWallInput : IInputActionCollection, IDisposable
+public class @BrokenWallAction : IInputActionCollection, IDisposable
 {
     public InputActionAsset asset { get; }
-    public @BrokenWallInput()
+    public @BrokenWallAction()
     {
         asset = InputActionAsset.FromJson(@"{
-    ""name"": ""BrokenWallActions"",
+    ""name"": ""BrokenWall"",
     ""maps"": [
         {
             ""name"": ""BrokenWall"",
-            ""id"": ""ee78ecfb-3d23-492e-9ed5-f6536dc3195f"",
+            ""id"": ""74fb9fa9-b434-4fd1-8702-5c9cbd125a3a"",
             ""actions"": [
                 {
                     ""name"": ""next"",
                     ""type"": ""Button"",
-                    ""id"": ""64a86db2-fc66-431f-a8e1-4770557efe23"",
+                    ""id"": ""c5647860-3b1e-4b9d-a172-7a36a98a3983"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -30,7 +30,7 @@ public class @BrokenWallInput : IInputActionCollection, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""853bfdb2-5860-4aec-a103-d6edce6b7c89"",
+                    ""id"": ""1fd9cb05-5b27-4548-befd-588307e2f6fb"",
                     ""path"": ""<Keyboard>/enter"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -99,8 +99,8 @@ public class @BrokenWallInput : IInputActionCollection, IDisposable
     private readonly InputAction m_BrokenWall_next;
     public struct BrokenWallActions
     {
-        private @BrokenWallInput m_Wrapper;
-        public BrokenWallActions(@BrokenWallInput wrapper) { m_Wrapper = wrapper; }
+        private @BrokenWallAction m_Wrapper;
+        public BrokenWallActions(@BrokenWallAction wrapper) { m_Wrapper = wrapper; }
         public InputAction @next => m_Wrapper.m_BrokenWall_next;
         public InputActionMap Get() { return m_Wrapper.m_BrokenWall; }
         public void Enable() { Get().Enable(); }

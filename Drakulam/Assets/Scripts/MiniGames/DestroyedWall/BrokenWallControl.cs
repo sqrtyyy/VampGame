@@ -5,14 +5,13 @@ using UnityEngine;
 
 public class BrokenWallControl : IControllable
 {
-    private BrokenWallInput _brickWallManager;
+    private BrokenWallAction _brickWallManager;
     public TaskDestroyedWall manager;
 
     private void Awake()
     {
-        _brickWallManager = new BrokenWallInput();
+        _brickWallManager = new BrokenWallAction();
         _brickWallManager.BrokenWall.next.performed += ctx => { manager.NextTrigger(); };
-   
     }
 
     private void OnEnable()
