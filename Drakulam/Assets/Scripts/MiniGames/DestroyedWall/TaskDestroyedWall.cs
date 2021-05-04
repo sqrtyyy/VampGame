@@ -42,7 +42,7 @@ public class TaskDestroyedWall : ITask
     private void SetUpGraphics()
     {
         graphics.SetActive(true);
-        popUpIndex = 0;
+        popUpIndex = TaskDescription;
         popUps[popUpIndex].SetActive(true);
     }
     
