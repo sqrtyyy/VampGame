@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
@@ -7,6 +8,8 @@ using Photon.Pun;
 
 public class TaskDestroyedWall : ITask
 {
+    private ExclamationMark _exclamationMark;
+    
     private static Random _randomize = new Random();
     private const int _randomBrickNum = 11;
     //private const int _choosableBricksNumber = 3;
@@ -32,6 +35,19 @@ public class TaskDestroyedWall : ITask
     private const int TaskLoss = 2;
 
     PhotonView photonView;
+
+    private void Awake()
+    {
+        var exclamationMarkName = "ExclamationMark";
+        _exclamationMark = Functions.GetScriptOnChild<ExclamationMark>(this, exclamationMarkName);
+        if (_exclamationMark == null)
+        {
+            Debug.Log("EXMARK exclamation mark script is null");
+            return;
+        }
+
+        _exclamationMark.canBeSabotaged = true;
+    }
 
     private void Start()
     {
@@ -61,6 +77,7 @@ public class TaskDestroyedWall : ITask
     {
         _isCompleted = isCompleted;
         NotifyTaskManager(GetTaskName(), isCompleted);
+        _exclamationMark.ChangeStatus();
         /*if (isCompleted)
             _answer = -1;*/
     }
@@ -106,6 +123,8 @@ public class TaskDestroyedWall : ITask
 
     public override void SetPlayerInfo(PlayerInfo playerInfo)
     {
+        if (_exclamationMark != null)
+            _exclamationMark.SetPlayerClass(playerInfo.characterClass);
     }
 
     public void CloseGame()
