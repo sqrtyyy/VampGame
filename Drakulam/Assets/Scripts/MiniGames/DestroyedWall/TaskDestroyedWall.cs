@@ -22,6 +22,7 @@ public class TaskDestroyedWall : ITask
         new Point(330, -76), new Point(51, -164), new Point(184, -164), new Point(337, -164)
     };
     private bool _isCompleted = false;
+    private bool _isStarted = false;
     public Sprite[] bricksSprites;
     public GameObject graphics;
     public GameObject crack;
@@ -65,11 +66,20 @@ public class TaskDestroyedWall : ITask
     
     public override void StartTask()
     {
-        if (_isCompleted == true)
+        if (_isCompleted || _isStarted)
             return;
         _InitializeGame();
         SetUpGraphics();
         NotifyTaskManager(GetTaskName(), _isCompleted);
+        AsyncStartTask(true);
+        if (PhotonNetwork.CurrentRoom != null)
+            photonView.RPC("AsyncStartTask", RpcTarget.Others, true);
+    }
+
+    [PunRPC]
+    private void AsyncStartTask(bool isStarted)
+    {
+        _isStarted = isStarted;
     }
 
     [PunRPC]
@@ -78,15 +88,16 @@ public class TaskDestroyedWall : ITask
         _isCompleted = isCompleted;
         NotifyTaskManager(GetTaskName(), isCompleted);
         _exclamationMark.ChangeStatus();
-        /*if (isCompleted)
-            _answer = -1;*/
     }
 
     public override void SabotageTask()
     {
+        if (!_isCompleted || _isStarted)
+            return;
         AsyncChangeStatus(false);
-        if (PhotonNetwork.IsConnectedAndReady)
+        if (PhotonNetwork.CurrentRoom != null)
             photonView.RPC("AsyncChangeStatus", RpcTarget.Others, false);
+        
         GameManager.UpdateTaskList();
     }
     public override bool IsCompleted()
@@ -130,6 +141,9 @@ public class TaskDestroyedWall : ITask
     public void CloseGame()
     {
         graphics.SetActive(false);
+        AsyncStartTask(false);
+        if (PhotonNetwork.CurrentRoom != null)
+            photonView.RPC("AsyncStartTask", RpcTarget.Others, false);
     }
 
     public void CheckAnswer(int brickIndex)
@@ -139,7 +153,7 @@ public class TaskDestroyedWall : ITask
         {
             popUpIndex = TaskWin;
             AsyncChangeStatus(true);
-            if (PhotonNetwork.IsConnectedAndReady)
+            if (PhotonNetwork.CurrentRoom != null)
                 photonView.RPC("AsyncChangeStatus", RpcTarget.Others, true);
             GameManager.UpdateTaskList();
             _answer = -1;
