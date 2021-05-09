@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEngine.SceneManagement;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using Photon.Pun;
 
 public class CharacterControl : IControllable
@@ -44,6 +41,9 @@ public class CharacterControl : IControllable
         {
             if (photonView.IsMine)
             {
+                if (GameManager.GameStarted())
+                    return;  
+                PhotonNetwork.LeaveRoom();
                 SceneManager.LoadScene("menu");
             }
         };
