@@ -432,6 +432,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  isDead: 0
+  deathAnimationLength: 0.8
   bloodSpotPrefab: {fileID: 3008776863013448979, guid: 15aacfd3054c9eb4a834d33e78a32b71,
     type: 3}
 --- !u!114 &7243357707775072921

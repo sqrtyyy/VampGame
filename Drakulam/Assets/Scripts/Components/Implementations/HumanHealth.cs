@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
@@ -6,15 +6,17 @@ using UnityEngine;
 public class HumanHealth : IHealth
 {
     private Animator anim;
-    private float deathAnimationLength = 3.5f;
+    [SerializeField] private float deathAnimationLength = 3.5f;
     private float prevSpawn = 0;
     private PhotonView photonView;
+    private ISoundable m_sound;
 
     [SerializeField] private GameObject bloodSpotPrefab;
     private Queue<GameObject> bloodSpots;
     protected void Start()
     {
         anim = GetComponent<Animator>();
+        m_sound = GetComponent<ISoundable>();
         GetComponent<ICharacterInterface>().SetMaxHealth(maxHealth);
         health = maxHealth;
         bloodSpots = new Queue<GameObject>();
@@ -29,28 +31,21 @@ public class HumanHealth : IHealth
     {
         health += delta;
         GetComponent<ICharacterInterface>().UpdateHealthBar(health);
-        Debug.Log(health);
         if (health <= 0)
         {
+            isDead = true;
+            GetComponent<IControllable>().enabled = false;
             anim.SetTrigger("death");
-            GetComponent<ISoundable>().playSound(ISoundable.SoundName.DEATH_SOUND);
-            StartCoroutine(Die());
+            m_sound.playSound(ISoundable.SoundName.DEATH_SOUND);
+            Destroy(gameObject, deathAnimationLength);
         }
         else //else for playing just one sound
         {
-            GetComponent<ISoundable>().playSound(ISoundable.SoundName.HIT_REACTION_SOUND);
+            m_sound.playSound(ISoundable.SoundName.HIT_REACTION_SOUND);
         }
     }
 
-    IEnumerator Die(){
-        while (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
-        {
-            yield return new WaitForSeconds(0.3f);
-        }
-        Destroy(gameObject, deathAnimationLength);
-    }
-
-    void Update(){
+    void FixedUpdate(){
         if (!photonView.IsMine) return;
         if (health / (float)maxHealth < 0.5 && Time.time - prevSpawn > 2)
         {
@@ -59,7 +54,6 @@ public class HumanHealth : IHealth
                 GameObject firstSpot = bloodSpots.Dequeue();
                 Destroy(firstSpot);
             }
-            Debug.LogWarning(" spawned");
             if (PhotonNetwork.IsConnectedAndReady && PhotonNetwork.CurrentRoom != null)
             {
                 bloodSpots.Enqueue(PhotonNetwork.Instantiate(bloodSpotPrefab.name, transform.position,
