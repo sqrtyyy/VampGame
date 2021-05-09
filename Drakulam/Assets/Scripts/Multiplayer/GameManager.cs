@@ -17,6 +17,14 @@ public class GameManager : MonoBehaviourPunCallbacks
     public Transform _vampUI;
 
     public AudioSource beginningMusic;
+    //________________________________________
+    /*  added human and vampire music as GameManager included objects
+    /*  nicely we should add musics as vampire and human prefabs
+    /*  but now i added it here
+    */
+    public AudioSource humanMusic;
+    public AudioSource vampireMusic;
+    
     static private GameObject player;
     int _nVampires = 1;
     string namePlayerPrefub;
@@ -42,6 +50,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             TaskManager.Instance().TasksSetPlayerInfo(new PlayerInfo(PlayerInfo.CharacterClass.Human));
             CharacterHumanLightStatus(true);
             CharacterVampireLightStatus(false);
+            humanMusic.Play();
         }
         else
         {
@@ -50,6 +59,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             TaskManager.Instance().TasksSetPlayerInfo(new PlayerInfo(PlayerInfo.CharacterClass.Vampire));
             CharacterVampireLightStatus(true);
             CharacterHumanLightStatus(false);
+            vampireMusic.Play();
         }
 
         if (PhotonNetwork.CurrentRoom.PlayerCount == PhotonNetwork.CurrentRoom.MaxPlayers)
@@ -91,11 +101,14 @@ public class GameManager : MonoBehaviourPunCallbacks
          */
         if (player == null) //
         {
+
             CharacterHumanLightStatus(false);
             CharacterVampireLightStatus(true);
             bool respawnUI = false;
             if (namePlayerPrefub == _humanPrefab.name)
             {
+                humanMusic.Stop();
+                vampireMusic.Play();
                 IncNumVamp();
                 photonView.RPC("IncNumVamp", RpcTarget.Others);
                 respawnUI = true;
