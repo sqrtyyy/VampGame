@@ -115,7 +115,7 @@ public class TaskDestroyedWall : ITask
             int j = _randomize.Next(i + 1);
             if (j != i)
                 choosableBricks[i] = choosableBricks[j];
-            choosableBricks[j] = i + 1;
+            choosableBricks[j] = i;
         }
         //pick only bricks.Length first bricks from random sequense from previous step
         for (int i = 0; i < bricks.Length; ++i)
@@ -141,6 +141,7 @@ public class TaskDestroyedWall : ITask
     public void CloseGame()
     {
         graphics.SetActive(false);
+        popUps[popUpIndex].SetActive(false);
         AsyncStartTask(false);
         if (PhotonNetwork.CurrentRoom != null)
             photonView.RPC("AsyncStartTask", RpcTarget.Others, false);
@@ -175,7 +176,6 @@ public class TaskDestroyedWall : ITask
         else if (popUpIndex == TaskWin || 
                  popUpIndex == TaskLoss)
         {
-            popUps[popUpIndex].SetActive(false);
             CloseGame();
         }
     }
