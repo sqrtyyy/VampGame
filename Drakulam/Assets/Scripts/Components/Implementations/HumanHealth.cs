@@ -47,12 +47,12 @@ public class HumanHealth : IHealth
 
     void FixedUpdate(){
         if (!photonView.IsMine) return;
-        if (health / (float)maxHealth < 0.5 && Time.time - prevSpawn > 2)
+        if (health / (float)maxHealth < 0.5 && Time.time - prevSpawn > 1)
         {
-            if (bloodSpots.Count > 5)
+            if (bloodSpots.Count > 10)
             {
                 GameObject firstSpot = bloodSpots.Dequeue();
-                Destroy(firstSpot);
+                PhotonNetwork.Destroy(firstSpot);
             }
             if (PhotonNetwork.IsConnectedAndReady && PhotonNetwork.CurrentRoom != null)
             {
