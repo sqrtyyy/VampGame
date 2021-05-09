@@ -136,6 +136,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             return;
         if (!TaskManager.Instance().IsAllTasksCompleted())
             return;
+        PhotonNetwork.LeaveRoom();
         SceneManager.LoadScene(3);
     }
 
@@ -145,7 +146,10 @@ public class GameManager : MonoBehaviourPunCallbacks
             return;
         if (_timePeriod - (PhotonNetwork.Time - _timeStart) < 0 ||
             _nVampires == PhotonNetwork.CurrentRoom.MaxPlayers)
+        {
+            PhotonNetwork.LeaveRoom();
             SceneManager.LoadScene(4);
+        }
     }
 
     private void UpdateTimer()

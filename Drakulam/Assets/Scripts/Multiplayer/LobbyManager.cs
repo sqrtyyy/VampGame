@@ -6,14 +6,17 @@ using UnityEngine;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
-    private byte countPlayers = 3;
+    private byte countPlayers = 5;
     public Dictionary<string, RoomInfo> roomDict;
     public RoomListInitializer roomListInitializer;
-    //public RoomListInitializer roomListInitializer;
+    [SerializeField] SendMsgAdapter startMsg;
+    [SerializeField] SendMsgAdapter bottomMsgBar;
+    [SerializeField] ConStatusController conController;
     // Start is called before the first frame update
     void Start()
     {
         roomDict = new Dictionary<string, RoomInfo>();
+        conController.StartConnectin();
         Connect();
     }
 
@@ -25,6 +28,12 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     private void Connect()
     {
+        if (PhotonNetwork.IsConnectedAndReady)
+        {
+            conController.FinishConnectin();
+            return;
+        }
+        startMsg.ShowMsg(MSG.CONNECTION);
         PhotonNetwork.NickName = "Player " + Random.Range(1000, 9999);
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.GameVersion = "1.0.0";
@@ -35,24 +44,47 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("Connected to server");
         if (PhotonNetwork.JoinLobby())
+        {
             Debug.Log("Join the lobby");
+            startMsg.ShowMsg(MSG.JOIN_LOBBY);
+        }
         else
-            Debug.Log("!!! fatal join the lobby !!!"); 
-        //base.OnConnectedToMaster();
+        {
+            startMsg.ShowMsg(MSG.JOIN_FAILED);
+            conController.ShowBtn(() =>
+            {
+                Connect();
+            });
+            Debug.Log("!!! fatal join the lobby !!!");
+        }
+    }
+
+    public override void OnCreateRoomFailed(short returnCode, string message)
+    {
+        bottomMsgBar.ShowMsg(MSG.CREATE_ROOM_FAILED, 5);
+    }
+
+    public override void OnJoinRoomFailed(short returnCode, string message)
+    {
+        bottomMsgBar.ShowMsg(MSG.JOIN_FAILED, 5);
+    }
+
+    public override void OnJoinedLobby()
+    {
+        conController.FinishConnectin();
     }
 
     public override void OnJoinedRoom()
     {
         Debug.Log("Join the room");
         PhotonNetwork.LoadLevel("Main");
-        //base.OnJoinedRoom();
     }
 
     public void CreateRoom(string name, string password)
     {
         if (!PhotonNetwork.IsConnectedAndReady)
             return;
-        
+        bottomMsgBar.ShowMsg(MSG.JOIN_ROOM);
         foreach (var room in roomDict.Values)
             if (name == room.Name)
             {
@@ -64,13 +96,18 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public void JoinRoom(string name, string password)
     {
+        bottomMsgBar.ShowMsg(MSG.JOIN_ROOM);
         PhotonNetwork.JoinRoom(name);
+    }
+
+    public override void OnJoinRandomFailed(short returnCode, string message)
+    {
+        bottomMsgBar.ShowMsg(MSG.JOIN_FAILED, 3);
     }
 
     public override void OnRoomListUpdate(List<RoomInfo> RoomList)
     {
         Debug.Log("Room list:");
-        //roomList = RoomList;
         foreach (var room in RoomList)
         {
             if (room.PlayerCount != 0 && room.PlayerCount != room.MaxPlayers)
