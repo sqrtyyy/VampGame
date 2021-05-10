@@ -223,6 +223,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         _started = false;
         player = null;
+        TaskManager.Clean();
         if (PhotonNetwork.CurrentRoom != null)
             PhotonNetwork.LeaveRoom();
         else
