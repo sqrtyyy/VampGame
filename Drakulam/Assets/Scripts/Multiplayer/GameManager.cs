@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     private double _timeStart;
 
     private double _timePeriod = 10 * 60;
-    private bool _started = false;
+    private static  bool _started = false;
 
 
     private void Awake()
@@ -149,7 +149,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             return;
         if (!TaskManager.Instance().IsAllTasksCompleted())
             return;
-        PhotonNetwork.LeaveRoom();
+        FinishGame();
         SceneManager.LoadScene(3);
     }
 
@@ -160,7 +160,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (_timePeriod - (PhotonNetwork.Time - _timeStart) < 0 ||
             _nVampires == PhotonNetwork.CurrentRoom.MaxPlayers)
         {
-            PhotonNetwork.LeaveRoom();
+            FinishGame();
             SceneManager.LoadScene(4);
         }
     }
@@ -212,5 +212,20 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         Camera.main.transform.Find("VampireLight").gameObject.SetActive(isOn);
         Camera.main.transform.Find("VampireLight_NoNM").gameObject.SetActive(isOn);
+    }
+
+    public static bool GameStarted()
+    {
+        return _started;
+    }
+    
+    static void FinishGame()
+    {
+        _started = false;
+        player = null;
+        if (PhotonNetwork.CurrentRoom != null)
+            PhotonNetwork.LeaveRoom();
+        else
+            Debug.LogWarning("room already left");
     }
 }

@@ -15,6 +15,11 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
+        if (PhotonNetwork.CurrentRoom != null)
+        {
+            Debug.LogWarning("invalide leaving room");
+            PhotonNetwork.LeaveRoom();
+        }
         roomDict = new Dictionary<string, RoomInfo>();
         conController.StartConnectin();
         Connect();
@@ -30,6 +35,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsConnectedAndReady)
         {
+            if (PhotonNetwork.CurrentLobby != null)
+                JoinLobby();
+            else
+                Debug.LogWarning("lobby already lioned");
             conController.FinishConnectin();
             return;
         }
@@ -43,20 +52,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log("Connected to server");
-        if (PhotonNetwork.JoinLobby())
-        {
-            Debug.Log("Join the lobby");
-            startMsg.ShowMsg(MSG.JOIN_LOBBY);
-        }
-        else
-        {
-            startMsg.ShowMsg(MSG.JOIN_FAILED);
-            conController.ShowBtn(() =>
-            {
-                Connect();
-            });
-            Debug.Log("!!! fatal join the lobby !!!");
-        }
+        JoinLobby();   
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)
@@ -78,6 +74,24 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("Join the room");
         PhotonNetwork.LoadLevel("Main");
+    }
+
+    void JoinLobby()
+    {
+        if (PhotonNetwork.JoinLobby())
+        {
+            Debug.Log("Join the lobby");
+            startMsg.ShowMsg(MSG.JOIN_LOBBY);
+        }
+        else
+        {
+            startMsg.ShowMsg(MSG.JOIN_FAILED);
+            conController.ShowBtn(() =>
+            {
+                Connect();
+            });
+            Debug.Log("!!! fatal join the lobby !!!");
+        }
     }
 
     public void CreateRoom(string name, string password)
