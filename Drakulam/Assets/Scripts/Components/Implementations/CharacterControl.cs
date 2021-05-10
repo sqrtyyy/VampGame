@@ -47,6 +47,7 @@ public class CharacterControl : IControllable
                 {
                     PhotonNetwork.LeaveRoom();
                 }
+                TaskManager.Clean();
                 SceneManager.LoadScene("menu");
             }
         };

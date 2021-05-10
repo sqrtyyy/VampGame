@@ -89,6 +89,7 @@ public class TutorialManager : MonoBehaviour
     
     private void EndVampireTutorial()
     {
+        TaskManager.Clean();
         SceneManager.LoadScene("menu");
     }
 
