@@ -7,7 +7,9 @@ using Utils;
 public class TorchTask : ITask
 {
     private PhotonView photonView;
-
+    public AudioSource initiationSound;
+    public AudioSource burningSound;
+    public AudioSource extinguishingSound;
     void Awake()
     {
         photonView = PhotonView.Get(this);
@@ -41,6 +43,8 @@ public class TorchTask : ITask
     {
         if (!IsCompleted())
         {
+            initiationSound.Play();
+            burningSound.Play();
             isOn = true;
             ChangeStatus();
             _exclamationMark.ChangeStatus();
@@ -61,6 +65,8 @@ public class TorchTask : ITask
     {
         if (IsCompleted())
         {
+            burningSound.Stop();
+            extinguishingSound.Play();
             isOn = false;
             ChangeStatus();
             _exclamationMark.ChangeStatus();

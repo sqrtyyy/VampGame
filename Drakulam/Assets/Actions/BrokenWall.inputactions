@@ -1,0 +1,33 @@
+{
+    "name": "BrokenWall",
+    "maps": [
+        {
+            "name": "BrokenWall",
+            "id": "74fb9fa9-b434-4fd1-8702-5c9cbd125a3a",
+            "actions": [
+                {
+                    "name": "next",
+                    "type": "Button",
+                    "id": "c5647860-3b1e-4b9d-a172-7a36a98a3983",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1fd9cb05-5b27-4548-befd-588307e2f6fb",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "next",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
