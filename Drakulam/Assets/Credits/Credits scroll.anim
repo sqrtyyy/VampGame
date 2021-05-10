@@ -20,7 +20,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: 4.8, y: -805.5, z: -48.875}
+        value: {x: 4.8, y: -770, z: -48.875}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -112,7 +112,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -805.5
+        value: -770
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -167,8 +167,8 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 36.733334
-    functionName: LoadMenu
+  - time: 32.516666
+    functionName: LoadScene
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
