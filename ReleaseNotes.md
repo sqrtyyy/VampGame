@@ -1,5 +1,17 @@
 # Release Notes 
 
+# Version 6.0
+
+## What's new
+ * More music and sounds
+ * Titres
+
+
+## What's improved
+ * Improved multiplayer
+ * Fix bugs
+ * Task with mini-window
+
 # Version 5.0
 
 ## What's new
