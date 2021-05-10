@@ -42,8 +42,11 @@ public class CharacterControl : IControllable
             if (photonView.IsMine)
             {
                 if (GameManager.GameStarted())
-                    return;  
-                PhotonNetwork.LeaveRoom();
+                    return;
+                if (PhotonNetwork.CurrentRoom != null)
+                {
+                    PhotonNetwork.LeaveRoom();
+                }
                 SceneManager.LoadScene("menu");
             }
         };

@@ -24,9 +24,9 @@ public class TaskManager
     
     public static void Clean()
     {
-        if (allTasks != null)
+        if (_instance != null)
         {
-            allTasks = null;
+            _instance.allTasks = null;
         }
         _instance = null;
     }
