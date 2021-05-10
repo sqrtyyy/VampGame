@@ -64,7 +64,7 @@ MonoBehaviour:
   - {x: -6.851453, y: 7.5673676, z: 0}
   m_ShapePathHash: -1797230345
   m_Mesh: {fileID: 0}
-  m_InstanceId: 170632
+  m_InstanceId: 94942
 --- !u!1 &1273867163831727176
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,7 +129,7 @@ MonoBehaviour:
   - {x: 0.6456795, y: 1.6513252, z: 0}
   m_ShapePathHash: 654258545
   m_Mesh: {fileID: 0}
-  m_InstanceId: 170606
+  m_InstanceId: 94916
 --- !u!1 &5478178235238446753
 GameObject:
   m_ObjectHideFlags: 0
@@ -13094,15 +13094,6 @@ Tilemap:
   m_GameObject: {fileID: 5478178236283898491}
   m_Enabled: 1
   m_Tiles:
-  - first: {x: 57, y: 61, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 71
-      m_TileSpriteIndex: 89
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741825
   - first: {x: 70, y: 71, z: 0}
     second:
       serializedVersion: 2
@@ -13256,8 +13247,8 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: de199f548345b6c47bda65023b7e2dbe, type: 2}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 0
@@ -13473,11 +13464,10 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 718362687132336883, guid: 5b18f2cdfb215fe4dbfb81ede60b3431, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: -4367962165236007752, guid: 5b18f2cdfb215fe4dbfb81ede60b3431,
-      type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileMatrixArray:
-  - m_RefCount: 2
+  - m_RefCount: 1
     m_Data:
       e00: 1
       e01: 0
@@ -13496,7 +13486,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 2
+  - m_RefCount: 1
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -22331,7 +22321,7 @@ MonoBehaviour:
   - {x: -1.3390598, y: 0.71855545, z: 0}
   m_ShapePathHash: -1356685803
   m_Mesh: {fileID: 0}
-  m_InstanceId: 170746
+  m_InstanceId: 95054
 --- !u!1 &7189847484818738189
 GameObject:
   m_ObjectHideFlags: 0
@@ -22392,7 +22382,7 @@ MonoBehaviour:
   - {x: -4.1891384, y: 0.90608215, z: 0}
   m_ShapePathHash: 1725156309
   m_Mesh: {fileID: 0}
-  m_InstanceId: 170724
+  m_InstanceId: 95034
 --- !u!1001 &874699277197598279
 PrefabInstance:
   m_ObjectHideFlags: 0
