@@ -11,7 +11,6 @@
  * Improved multiplayer
  * Fix bugs
  * Task with mini-window
-
 # Version 5.0
 
 ## What's new

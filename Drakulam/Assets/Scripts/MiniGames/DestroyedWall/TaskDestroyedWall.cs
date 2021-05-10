@@ -133,8 +133,6 @@ public class TaskDestroyedWall : ITask
 
     public override void SetPlayerInfo(PlayerInfo playerInfo)
     {
-        if (_exclamationMark != null)
-            _exclamationMark.SetPlayerClass(playerInfo.characterClass);
     }
 
     public void CloseGame()
