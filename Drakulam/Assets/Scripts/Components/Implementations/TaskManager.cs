@@ -15,13 +15,22 @@ public class TaskManager
 
     public static TaskManager Instance()
     {
-
         if (_instance == null)
         {
             _instance = new TaskManager();
         }
         return _instance;
     }
+    
+    public static void Clean()
+    {
+        if (allTasks != null)
+        {
+            allTasks = null;
+        }
+        _instance = null;
+    }
+    
 
     public void Update(string taskName, bool isTaskCompleted)
     {
@@ -53,12 +62,6 @@ public class TaskManager
             }
 
         }
-
-        foreach (KeyValuePair<string, Tuple<int, int>> entry in allTasks)
-        {
-            Debug.Log($"task: {entry.Key}");
-            Debug.Log($"active: {entry.Value.Item1} max {entry.Value.Item2}");
-        }
     }
 
     public void TasksSetPlayerInfo(PlayerInfo playerInfo)
@@ -74,6 +77,7 @@ public class TaskManager
 
     private void InitDictionary()
     {
+        allTasks = new Dictionary<string, Tuple<int, int>>();
         GameObject[] tasks = GameObject.FindGameObjectsWithTag("Task");
         foreach (var task in tasks)
         {
@@ -118,6 +122,6 @@ public class TaskManager
      * Key - task name
      * Value - pair (numOfCompletedTasks, maxTasks)
      **/
-    Dictionary<string, Tuple<int, int>> allTasks = new Dictionary<string, Tuple<int, int>>();
+    private Dictionary<string, Tuple<int, int>> allTasks;
 
 }
