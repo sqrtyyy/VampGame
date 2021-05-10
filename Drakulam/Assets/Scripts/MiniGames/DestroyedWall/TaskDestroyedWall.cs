@@ -123,9 +123,8 @@ public class TaskDestroyedWall : ITask
         _answer = _randomize.Next(bricks.Length - 1);
         Debug.Log(_answer);
         var destroyedBrick = choosableBricks[_answer];
-        
         crack.GetComponent<RectTransform>().localPosition = new Vector3( _brickCenters[destroyedBrick].X, _brickCenters[destroyedBrick].Y, 0);
-    
+        ChangeBricksStatus(false);
     }
     public override string GetTaskName()
     {
@@ -165,6 +164,7 @@ public class TaskDestroyedWall : ITask
         }
 
         popUps[popUpIndex].SetActive(true);
+        ChangeBricksStatus(false);
     }
 
     public void NextTrigger()
@@ -172,12 +172,19 @@ public class TaskDestroyedWall : ITask
         if (popUpIndex == TaskDescription)
         {
             popUps[popUpIndex].SetActive(false);
+            ChangeBricksStatus(true);
         }
         else if (popUpIndex == TaskWin || 
                  popUpIndex == TaskLoss)
         {
             CloseGame();
         }
+    }
+    
+    private void ChangeBricksStatus(bool status)
+    {
+        for (int i = 0; i < bricks.Length; ++i)
+            bricks[i].GetComponent<Button>().interactable = status;
     }
     
     
