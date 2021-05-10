@@ -636,6 +636,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.000030517578
       objectReference: {fileID: 0}
+    - target: {fileID: 2872450576009611435, guid: a8ea308dad5e1004aa319830494661b3,
+        type: 3}
+      propertyPath: attackRadius
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2902113490151333262, guid: a8ea308dad5e1004aa319830494661b3,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -709,17 +714,17 @@ PrefabInstance:
     - target: {fileID: 4508945831261510693, guid: a8ea308dad5e1004aa319830494661b3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -108.16
+      value: -109.5
       objectReference: {fileID: 0}
     - target: {fileID: 4508945831261510693, guid: a8ea308dad5e1004aa319830494661b3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.13
+      value: 23.8
       objectReference: {fileID: 0}
     - target: {fileID: 4508945831261510693, guid: a8ea308dad5e1004aa319830494661b3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.2891922
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4508945831261510693, guid: a8ea308dad5e1004aa319830494661b3,
         type: 3}
@@ -940,6 +945,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ShapeLightParametricAngleOffset
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8051993502915776877, guid: a8ea308dad5e1004aa319830494661b3,
+        type: 3}
+      propertyPath: maxHealth
+      value: 7000
       objectReference: {fileID: 0}
     - target: {fileID: 8308262448129472373, guid: a8ea308dad5e1004aa319830494661b3,
         type: 3}
@@ -3357,7 +3367,7 @@ PrefabInstance:
     - target: {fileID: 1089567215812443665, guid: e0658376df237ef46a4303a79ccf5007,
         type: 3}
       propertyPath: maxHealth
-      value: 30
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 2387761834862433724, guid: e0658376df237ef46a4303a79ccf5007,
         type: 3}
