@@ -5,6 +5,7 @@ public class HittableCharacter : IHittable
 {
     public override void Hit(int damage)
     {
+        if (GetComponent<IHealth>().isDead) return;
         AsynchronousHit(damage);
         PhotonView photonView = PhotonView.Get(this);
         if (PhotonNetwork.IsConnectedAndReady && PhotonNetwork.CurrentRoom != null)

@@ -1,0 +1,33 @@
+{
+    "name": "LoadSceneAct",
+    "maps": [
+        {
+            "name": "LoadScene",
+            "id": "06ee4d50-6472-4e4c-9d5c-448d7c2de4ae",
+            "actions": [
+                {
+                    "name": "Escape",
+                    "type": "Button",
+                    "id": "59164464-3c65-457a-9278-9495454574ff",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e3bdf46c-34eb-4b13-810e-1398f64f47a6",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

@@ -17,6 +17,14 @@ public class GameManager : MonoBehaviourPunCallbacks
     public Transform _vampUI;
 
     public AudioSource beginningMusic;
+    //________________________________________
+    /*  added human and vampire music as GameManager included objects
+    /*  nicely we should add musics as vampire and human prefabs
+    /*  but now i added it here
+    */
+    public AudioSource humanMusic;
+    public AudioSource vampireMusic;
+    
     static private GameObject player;
     int _nVampires = 1;
     string namePlayerPrefub;
@@ -25,7 +33,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     private double _timeStart;
 
     private double _timePeriod = 10 * 60;
-    private bool _started = false;
+    private static  bool _started = false;
 
 
     private void Awake()
@@ -42,6 +50,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             TaskManager.Instance().TasksSetPlayerInfo(new PlayerInfo(PlayerInfo.CharacterClass.Human));
             CharacterHumanLightStatus(true);
             CharacterVampireLightStatus(false);
+            humanMusic.Play();
         }
         else
         {
@@ -50,6 +59,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             TaskManager.Instance().TasksSetPlayerInfo(new PlayerInfo(PlayerInfo.CharacterClass.Vampire));
             CharacterVampireLightStatus(true);
             CharacterHumanLightStatus(false);
+            vampireMusic.Play();
         }
 
         if (PhotonNetwork.CurrentRoom.PlayerCount == PhotonNetwork.CurrentRoom.MaxPlayers)
@@ -91,11 +101,14 @@ public class GameManager : MonoBehaviourPunCallbacks
          */
         if (player == null) //
         {
+
             CharacterHumanLightStatus(false);
             CharacterVampireLightStatus(true);
             bool respawnUI = false;
             if (namePlayerPrefub == _humanPrefab.name)
             {
+                humanMusic.Stop();
+                vampireMusic.Play();
                 IncNumVamp();
                 photonView.RPC("IncNumVamp", RpcTarget.Others);
                 respawnUI = true;
@@ -136,6 +149,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             return;
         if (!TaskManager.Instance().IsAllTasksCompleted())
             return;
+        FinishGame();
         SceneManager.LoadScene(3);
     }
 
@@ -145,7 +159,10 @@ public class GameManager : MonoBehaviourPunCallbacks
             return;
         if (_timePeriod - (PhotonNetwork.Time - _timeStart) < 0 ||
             _nVampires == PhotonNetwork.CurrentRoom.MaxPlayers)
+        {
+            FinishGame();
             SceneManager.LoadScene(4);
+        }
     }
 
     private void UpdateTimer()
@@ -195,5 +212,20 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         Camera.main.transform.Find("VampireLight").gameObject.SetActive(isOn);
         Camera.main.transform.Find("VampireLight_NoNM").gameObject.SetActive(isOn);
+    }
+
+    public static bool GameStarted()
+    {
+        return _started;
+    }
+    
+    static void FinishGame()
+    {
+        _started = false;
+        player = null;
+        if (PhotonNetwork.CurrentRoom != null)
+            PhotonNetwork.LeaveRoom();
+        else
+            Debug.LogWarning("room already left");
     }
 }
