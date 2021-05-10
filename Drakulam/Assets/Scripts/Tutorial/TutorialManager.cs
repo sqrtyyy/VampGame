@@ -74,6 +74,12 @@ public class TutorialManager : MonoBehaviour
     
     private void InitializeVampireTutorial()
     {
+        if (!isVampFacingRight)
+        {
+            Vector3 theScale = vampire.GetComponent<Transform>().transform.localScale;
+            theScale.x *= -1;
+            vampire.GetComponent<Transform>().transform.localScale = theScale;
+        }
         ChangeLight();
         _UI.gameObject.SetActive(false);
         _UI = Instantiate<Transform>(_vampUI);
