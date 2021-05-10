@@ -42,6 +42,8 @@ public class TutorialManager : MonoBehaviour
 
     private Vector3 lastHumanPos;
 
+    private bool isVampFacingRight = true;
+
     private void CompleteStep()
     {
         popUps[popUpIndex].SetActive(false);
@@ -59,7 +61,7 @@ public class TutorialManager : MonoBehaviour
         //vampire.GetComponent<CharacterControl>().isMuvable = true;
 
         human.GetComponent<Transform>().position = new Vector3(-94.22f, 26.3f, 0);
-        vampire.GetComponent<Transform>().position = new Vector3(-1000.46f, -500.42f, 0f);
+        //vampire.GetComponent<Transform>().position = new Vector3(-1000.46f, -500.42f, 0f);
 
         human.GetComponent<CharacterControl>().gameObject.SetActive(true);
         vampire.GetComponent<CharacterControl>().gameObject.SetActive(false);
@@ -68,12 +70,6 @@ public class TutorialManager : MonoBehaviour
         
         _vampireHealth.setHealth(500);
         task.SetPlayerInfo(new PlayerInfo(PlayerInfo.CharacterClass.Human));
-    }
-    
-    private void EndHumanTutorial()
-    {
-        _humanHealth.setHealth(10);
-        _vampireHealth.setHealth(100);
     }
     
     private void InitializeVampireTutorial()
@@ -101,18 +97,36 @@ public class TutorialManager : MonoBehaviour
         EndVampireTutorial();
     }
 
+    double norm_evclid(Vector3 vec)
+    {
+        return Math.Sqrt(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
+    }
+
     private void HumanDeathStep()
     {
-        _vampirePose.position = _humanPose.position - new Vector3(0, 1, 0);
-        lastHumanPos = human.GetComponent<Transform>().position;
-        vampire.GetComponent<IDamageDealer>().Attack();
+        _humanPose = human.GetComponent<Transform>();
+        _vampirePose = vampire.GetComponent<Transform>();
+        Vector3 direction = _humanPose.position - _vampirePose.position;
+        _vampirePose.position += direction * (float) 0.01;
+        if (direction.x < 0 && isVampFacingRight || direction.x > 0 && !isVampFacingRight)
+        {
+            isVampFacingRight = !isVampFacingRight;
+            Vector3 theScale = vampire.GetComponent<Transform>().transform.localScale;
+            theScale.x *= -1;
+            vampire.GetComponent<Transform>().transform.localScale = theScale;
+        }
+        if (norm_evclid(direction) < 5)
+        {
+            vampire.GetComponent<IDamageDealer>().Attack();
+        }
+
+        lastHumanPos = _humanPose.position;
     }
 
     void Start()
     {
         popUpIndex = 0;
         _humanHealth = human.GetComponent<HumanHealth>();
-        Debug.Log(_humanHealth);
         _vampireHealth = vampire.GetComponent<HumanHealth>();
         InitializeHumanTutorial();
         _humanPose = human.GetComponent<Transform>();
@@ -127,13 +141,12 @@ public class TutorialManager : MonoBehaviour
             CompleteStep();
         else if (popUpIndex == TutorialVHumanDeath)
         {
-            if (human == null || _humanHealth.getHealth() == 0)
+            if (human == null)
             {
-                //EndHumanTutorial();
                 InitializeVampireTutorial();
                 CompleteStep();
             }
-            else
+            else if (_humanHealth.getHealth() > 0)
             {
                 HumanDeathStep();
             }
